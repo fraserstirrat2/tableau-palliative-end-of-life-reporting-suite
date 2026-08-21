@@ -42,6 +42,8 @@ Validation checks included:
 - checking multiple financial years and approved filter combinations;
 - confirming the summary table and trend chart remain aligned after parameter changes.
 
+The current Admissions reporting includes **final 2024/25 data**. This status is now reflected in the portfolio case study so the repository does not describe the latest year as provisional.
+
 This matters because the workbook contains reusable logic: one successful dashboard state is not enough to demonstrate that the calculations behave correctly across all five periods and both derived trend measures.
 
 ## Parameter and filter testing
