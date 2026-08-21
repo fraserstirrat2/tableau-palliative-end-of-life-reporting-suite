@@ -2,6 +2,8 @@
 
 This page documents the analytical pipeline behind the Admissions Dashboard at a level suitable for a public technical portfolio. The production R code and source-level records are intentionally not reproduced because the analysis uses linked health and death-record data.
 
+**Current reporting status:** the latest Admissions year shown in the portfolio is **2024/25 and is final**.
+
 ## Analytical cohort
 
 The analysis is centred on **individuals who died in each financial year**. Death and demographic information is derived from National Records of Scotland death records, with external causes excluded in line with the end-of-life analytical methodology.
