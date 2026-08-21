@@ -4,7 +4,9 @@ This page records how the Admissions Dashboard was reviewed, tested and refined 
 
 ## Iterative development approach
 
-Development was supported through recurring palliative and end-of-life care review meetings where analytical outputs, refreshes, data-quality issues, reporting requirements and dashboard changes could be discussed. Feedback was then translated into changes to the Tableau workbook and, where necessary, the upstream analytical output.
+Development has been supported through **fortnightly Palliative and End-of-Life Care review meetings**. These sessions provide a recurring forum to discuss analytical outputs, information requests, refreshes, data completeness, workload, dashboard demonstrations, upcoming releases and potential reporting improvements.
+
+Dashboard changes were therefore not developed in isolation. Feedback from analysts and wider stakeholders was translated into Tableau changes and, where required, into updates to the upstream analytical output.
 
 The case study deliberately separates **team-based analytical development** from the Tableau work I can evidence directly. It does not present shared R development or colleagues' contributions as solely my own work.
 
@@ -15,25 +17,32 @@ The case study deliberately separates **team-based analytical development** from
 | **February 2026** | Initial dashboard review and build-out; assessment of relevant worksheets and outputs; early work on filter behaviour and dashboard layout. |
 | **March 2026** | Refinement of Admissions controls, including multi-selection behaviour, legend presentation, information guidance and the move toward **Admissions per Death** as the primary trend measure rather than a less clearly defined rate label. |
 | **April 2026** | Further terminology and usability work, including bed-day wording, Health Board presentation, tooltip review and strengthening information-panel content. |
-| **May 2026** | Numerical checks against analytical outputs, review of the latest Admissions analysis and clinical stakeholder demonstration. A request for an additional **7-day** pre-death view was taken forward into the analytical pipeline and Tableau Time Window control. |
-| **Ongoing** | Repeated checks of calculations, filters, parameters, information guidance, dashboard navigation and refreshed analytical outputs in the controlled Tableau development environment. |
+| **May 2026** | Numerical checks against established Admissions outputs, review of the latest analysis and a clinical stakeholder demonstration. A request for an additional **7-day** pre-death view was taken forward into the analytical pipeline and Tableau Time Window control. |
+| **Ongoing** | Fortnightly review, repeated calculation checks, filter/parameter testing, information-design refinement, dashboard navigation checks and validation of refreshed analytical outputs in the controlled Tableau development environment. |
 
 The 7-day enhancement is a particularly useful example of stakeholder-led iteration: the reporting architecture was flexible enough to add a new analytical period without requiring an entirely separate dashboard.
 
 ## Numerical validation
 
-The dashboard has been checked against the prepared analytical outputs rather than validated only by visual inspection.
+The Tableau dashboard has been validated against established analytical outputs rather than checked only by visual inspection.
 
-Checks include:
+For the established **14-day, 3-month, 6-month and 12-month** periods, numerical checks were carried out against the corresponding annual **Number of Admissions** publication outputs. These outputs use the same underlying analytical concepts and provide a practical benchmark for confirming that the refreshed code and Tableau results reconcile as expected.
 
-- comparing Tableau totals with the upstream analytical outputs;
+The later **7-day** view was introduced as an enhancement after stakeholder feedback. Because it was a new analytical window rather than one of the pre-existing publication outputs, it was checked against the prepared analytical dataset and the same reusable Tableau calculation logic rather than presented as though an existing 7-day publication benchmark already existed.
+
+Validation checks included:
+
+- reconciling Tableau totals with the prepared analytical outputs;
+- comparing established periods with the corresponding annual Admissions publication figures;
 - confirming admissions, patients, bed days and deaths align with the selected Time Window;
-- checking Admissions per Death against the underlying selected admissions and death counts;
+- independently checking **Admissions per Death = Selected Admissions / Selected Deaths**;
+- independently checking **Average Length of Stay = Selected Beddays / Selected Patients**;
+- confirming divide-by-zero handling returns null where the denominator is zero;
 - testing the Scotland comparator against the national result;
-- checking multiple financial years and filter combinations;
+- checking multiple financial years and approved filter combinations;
 - confirming the summary table and trend chart remain aligned after parameter changes.
 
-This matters because the workbook contains reusable logic: one successful dashboard state is not enough to prove that the calculations behave correctly across all five periods.
+This matters because the workbook contains reusable logic: one successful dashboard state is not enough to demonstrate that the calculations behave correctly across all five periods and both derived trend measures.
 
 ## Parameter and filter testing
 
@@ -44,7 +53,7 @@ The two main parameters were tested across their available values:
 
 Filter testing also covered demographic, admission, geography, deprivation, rurality, location and cause-of-death selections.
 
-The public screenshot set intentionally captures different Scotland-level filter states so the repository demonstrates that the workbook responds to more than its default view.
+The public screenshot set intentionally captures different approved Scotland-level filter states so the repository demonstrates that the workbook responds to more than its default view.
 
 ## Cause-of-death validation and user guidance
 
@@ -69,14 +78,16 @@ Development notes show repeated attention to the reporting experience, including
 
 The information icon therefore represents part of the final quality-control approach, not simply decorative help text. It records definitions and caveats at the point where users interact with the analysis.
 
-## Technical evidence retained
+## Evidence retained
 
 The Admissions case study contains:
 
 - **10 dashboard screenshots** across all five analytical windows and both trend measures;
 - **7 Tableau worksheets**;
 - **2 parameters**;
-- **19 calculated fields** grouped by analytical purpose.
+- **19 calculated fields** grouped by analytical purpose;
+- a documented development timeline based on retained working notes;
+- methodology and validation documentation explaining how the dashboard was checked without publishing restricted source material.
 
 These artefacts allow a technical reviewer to inspect the implementation without requiring access to the managed Tableau environment.
 
@@ -97,4 +108,4 @@ The portfolio evidence instead focuses on approved Scotland-level examples, anal
 
 ## What this development history demonstrates
 
-The strongest evidence from the project is the combination of **technical implementation + QA + iteration**. The dashboard changed in response to numerical checks, analyst review and stakeholder feedback, while the calculation and parameter architecture allowed those changes to be incorporated into the same reporting product.
+The strongest evidence from the project is the combination of **technical implementation + QA + iteration + stakeholder review**. The dashboard changed in response to numerical checks, analyst review and stakeholder feedback, while the calculation and parameter architecture allowed those changes to be incorporated into the same reporting product.
