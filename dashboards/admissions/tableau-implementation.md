@@ -30,7 +30,7 @@ The **Time Window** parameter allows the user to switch between:
 - 6 Months
 - 12 Months
 
-The parameter feeds reusable calculated fields for admissions, patients, bed days and deaths. For example, **Selected Admissions** checks the Time Window value and returns the matching upstream field for that period. The same design is used for Selected Deaths and the other activity measures.
+The parameter feeds reusable calculated fields for admissions, patients, bed days and deaths. For example, **Selected Admissions** checks the Time Window value and returns the matching upstream field for that period. The same design is used for Selected Deaths, Selected Beddays and Selected Patients.
 
 This gives the dashboard one consistent calculation layer even though the analytical dataset contains separate period-specific measures.
 
@@ -49,17 +49,69 @@ The user can therefore change the analytical question without leaving the dashbo
 
 The Tableau calculation uses the selected activity measures rather than a fixed source field.
 
+```text
+IF [Selected Deaths] = 0 THEN NULL
+ELSE [Selected Admissions] / [Selected Deaths]
+END
+```
+
 Conceptually:
 
 ```text
-Admissions per Death
-=
-Selected Admissions / Selected Deaths
+Admissions per Death = Selected Admissions / Selected Deaths
 ```
 
-A zero-denominator check returns null when Selected Deaths is zero. This prevents invalid division and ensures the measure always follows the currently selected Time Window.
+The zero-denominator check prevents invalid division and ensures the measure always follows the currently selected Time Window.
 
-This calculated-field design is evidenced in the [Core Measures](calculated-fields/core-measures/README.md) folder.
+## Average Length of Stay
+
+Average Length of Stay follows the same reusable pattern:
+
+```text
+IF [Selected Patients] = 0 THEN NULL
+ELSE [Selected Beddays] / [Selected Patients]
+END
+```
+
+Conceptually:
+
+```text
+Average Length of Stay = Selected Beddays / Selected Patients
+```
+
+The measure therefore represents the average number of hospital bed days per admitted patient within the selected pre-death period. The upstream analytical process constrains bed days to the selected window, while the Tableau calculation layer dynamically selects the matching bed-day and patient fields.
+
+This is important because the dashboard does not use one fixed 12-month calculation and simply relabel it. The Time Window parameter changes the underlying activity values used by both derived measures.
+
+See [Core Analytical Measures](calculated-fields/core-measures/README.md).
+
+## Reusable selected-activity pattern
+
+The selected activity fields use the same CASE structure. For example:
+
+```text
+CASE [Time Window]
+WHEN "7 Days" THEN SUM([Beddays7])
+WHEN "14 Days" THEN SUM([Beddays14])
+WHEN "3 Months" THEN SUM([Beddays3])
+WHEN "6 Months" THEN SUM([Beddays6])
+WHEN "12 Months" THEN SUM([Beddays12])
+END
+```
+
+Equivalent calculations select admissions, deaths and patients. This creates a clear dependency chain:
+
+```text
+Time Window
+    ↓
+Selected Admissions / Patients / Beddays / Deaths
+    ↓
+Admissions per Death / Average Length of Stay
+    ↓
+Trend Selector
+    ↓
+Displayed trend + Scotland comparator
+```
 
 ## Filter design
 
@@ -145,18 +197,6 @@ The main case study uses only a small number of these images, while the full evi
 
 ## Why this implementation is useful
 
-The technical value of the dashboard is not simply the chart type. The reusable architecture turns a multi-period analytical output into a single controlled reporting interface:
-
-```text
-Time Window parameter
-        ↓
-Selected activity measures
-        ↓
-Derived calculations
-        ↓
-Trend Selector
-        ↓
-Dynamic trend + comparator + summary table
-```
+The technical value of the dashboard is not simply the chart type. The reusable architecture turns a multi-period analytical output into a single controlled reporting interface. It also made later enhancements easier: when a 7-day analysis was requested through stakeholder review, the new period could be incorporated into the same parameter and calculation structure rather than creating another standalone dashboard.
 
 That structure makes the workbook easier to extend, validate and explain than maintaining separate dashboard pages for every combination of time period and measure.
