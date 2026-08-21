@@ -37,7 +37,23 @@ The dashboard reports four core activity measures across the selected time windo
 
 The main trend can then be switched between **Admissions per Death** and **Average Length of Stay** using the Trend Selector parameter.
 
-For Admissions per Death, the Tableau calculation divides the parameter-selected admission count by the parameter-selected death count and returns null when the denominator is zero. This means the same derived measure automatically follows the selected 7-day, 14-day, 3-month, 6-month or 12-month period.
+### Admissions per Death
+
+```text
+Selected Admissions / Selected Deaths
+```
+
+A zero-denominator check returns null when Selected Deaths is zero.
+
+### Average Length of Stay
+
+```text
+Selected Beddays / Selected Patients
+```
+
+A zero-denominator check returns null when Selected Patients is zero.
+
+Both calculations use parameter-selected activity fields, so the same logic automatically follows the active 7-day, 14-day, 3-month, 6-month or 12-month window.
 
 ## Why the 7-day view exists
 
@@ -88,6 +104,16 @@ The dashboard therefore provides explicit guidance:
 - do not combine **Non-cancer** with an individual non-cancer cause group.
 
 This is treated as an interpretation and data-quality control rather than left for users to discover through incorrect totals.
+
+## Validation and review
+
+The dashboard has been refined through **fortnightly Palliative and End-of-Life Care review meetings**, where the team discusses data refreshes, completeness, current analytical work, reporting requirements and potential improvements.
+
+Validation goes beyond checking whether the charts render correctly. For the established **14-day, 3-month, 6-month and 12-month** periods, Tableau and analytical outputs were reconciled against the corresponding annual **Number of Admissions** publication outputs. The later 7-day enhancement was checked against the prepared analytical dataset and the same reusable calculation framework.
+
+Checks include totals, parameters, filter behaviour, Scotland comparator values, summary-table alignment and both derived trend measures.
+
+See [Validation and Development](validation-and-development.md) for the development timeline and QA approach.
 
 ## Evidence in this case study
 
