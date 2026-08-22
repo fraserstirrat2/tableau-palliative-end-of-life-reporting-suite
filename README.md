@@ -34,15 +34,47 @@ The underlying analytical work is team-maintained, so the portfolio deliberately
 
 The Tableau workbook contains five main analytical areas. The **Admissions Dashboard** is the first completed technical case study; the remaining sections will be added using the same evidence-led structure as their public-safe material is prepared.
 
-| Dashboard area | Portfolio status | What will be shown |
+| Dashboard area | Portfolio status | Current public evidence |
 | --- | --- | --- |
 | **Admissions Dashboard** | ✅ Full technical case study complete | Five pre-death time windows, two trend measures, parameter-driven reporting, Scotland comparator logic, QA and stakeholder-led development |
-| **Last 6 Months of Life by Setting (MSG5)** | 🚧 In progress | Scotland-level dashboard overview, key measures, interactions, analytical context and technical implementation |
-| **Key Information Summary** | 🚧 In progress | Scotland-level summary view, headline indicators, design rationale and reporting logic |
-| **Service Utilisation** | 🚧 In progress | Scotland-level service-use reporting, dashboard interactions, calculations and validation approach |
-| **Location of Death** | 🚧 In progress | Scotland-level location-of-death reporting, visual design, measures, filters and QA evidence |
+| **Last 6 Months of Life by Setting (MSG5)** | 🚧 Case study in progress | Scotland-level overview screenshot now published |
+| **Key Information Summary** | 🚧 Case study in progress | Scotland-level overview screenshot now published |
+| **Service Utilisation** | 🚧 Case study in progress | Scotland-level overview screenshot now published |
+| **Location of Death** | 🚧 Case study in progress | Scotland-level overview screenshot now published |
 
-Public-safe Scotland-level screenshots of the remaining dashboard areas will be added here as each section is prepared. Their detailed case studies will then follow without delaying the usefulness of the repository as an overall portfolio piece.
+The overview screenshots below give an immediate view of the wider reporting suite while the supporting technical documentation is developed dashboard by dashboard.
+
+## Reporting suite — Scotland-level visual overview
+
+### Admissions Dashboard
+
+The Admissions Dashboard is the first fully documented technical case study and currently provides the deepest evidence of Tableau implementation, analytical design, QA and iterative stakeholder development.
+
+![Admissions Dashboard — 12 months before death, Admissions per Death](dashboards/admissions/dashboard-screenshots/09-12-months-admissions-per-death.png)
+
+### Last 6 Months of Life by Setting
+
+This dashboard provides a Scotland-level view of activity across care settings during the final six months of life. The detailed case study will be added as the supporting methodology, calculations, controls and validation evidence are documented.
+
+![Last 6 Months of Life by Setting — Scotland-level overview](dashboards/01-L6MOL-Scotland-Level-Dashboard-Overview.png)
+
+### Key Information Summary
+
+This dashboard provides a high-level Scotland summary of key palliative and end-of-life care measures. The future case study will document the reporting logic, information design, analytical context and QA behind the view.
+
+![Key Information Summary — Scotland-level overview](dashboards/01-KIS-Scotland-Level-Dashboard-Overview.png)
+
+### Service Utilisation
+
+This dashboard provides a Scotland-level overview of service-use patterns within the wider reporting suite. Detailed documentation covering interactions, measures, validation and analytical interpretation will follow.
+
+![Service Utilisation — Scotland-level overview](dashboards/01-Service-Utilisation-Scotland-Level-Dashboard-Overview.png)
+
+### Location of Death
+
+This dashboard provides a Scotland-level view of location-of-death reporting. The supporting case study will later document the underlying measures, visual design, filters, validation process and stakeholder reporting context.
+
+![Location of Death — Scotland-level overview](dashboards/01-LOD-Scotland-Level-Dashboard-Overview.png)
 
 ## Completed case study — Admissions Dashboard
 
@@ -69,12 +101,6 @@ The case study includes **10 approved Scotland-level dashboard states, 7 Tableau
 - [Parameters](dashboards/admissions/parameters/README.md)
 - [Calculated fields](dashboards/admissions/calculated-fields/README.md)
 - [Worksheets](dashboards/admissions/worksheets/README.md)
-
-## Example: Admissions Dashboard
-
-The screenshot below is an approved **Scotland-level** view from the current Admissions case study. Additional reporting-suite screenshots will be added to this homepage as the remaining dashboard sections are prepared.
-
-![Admissions Dashboard — 12 months before death, Admissions per Death](dashboards/admissions/dashboard-screenshots/09-12-months-admissions-per-death.png)
 
 ## Technical and professional capability demonstrated
 
@@ -124,7 +150,7 @@ The repository should therefore be read as **evidence of professional BI deliver
 - [x] Create the public Tableau reporting-suite repository.
 - [x] Complete the Admissions Dashboard technical case study.
 - [x] Publish Admissions Scotland-level visual evidence and technical documentation.
-- [ ] Add a representative Scotland-level screenshot for each remaining dashboard area.
+- [x] Add a representative Scotland-level screenshot for each remaining dashboard area.
 - [ ] Build the Last 6 Months of Life by Setting case study.
 - [ ] Build the Key Information Summary case study.
 - [ ] Build the Service Utilisation case study.
