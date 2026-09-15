@@ -1,68 +1,158 @@
 # MSG5 — Calculated Fields
 
-This folder will document the calculated fields that are genuinely relevant to the **Last 6 Months of Life by Setting** dashboard.
+This folder documents the calculated/helper fields that are genuinely relevant to the **Last 6 Months of Life by Setting** dashboard.
 
-Unlike the Admissions Dashboard, MSG5 appears to have a comparatively small calculation layer. The documentation should therefore group calculations by analytical purpose rather than creating unnecessary subfolders for every field.
+Unlike the Admissions Dashboard, MSG5 has a deliberately small Tableau calculation layer. The four main Numbers measures and four Percentage measures are supplied by the governed MSG5 dataset; Tableau calculations are focused on **geography selection, view switching and presentation logic**.
 
-## Calculation families identified so far
+## Architecture at a glance
 
-### 1. Setting percentage measures
+| Field | Purpose | Main dependency |
+| --- | --- | --- |
+| `Council Area` | Tests whether the source geography matches the selected Council Area parameter | Council Area parameter + source Council Area field |
+| `Is Selected Council (Filter)` | Applies explicit selection logic for `Select`, Scotland and a chosen Council Area | Council Area parameter + source Council Area field |
+| `BedDaysView_Filter` | Carries the current Bed Days parameter state into worksheet filters | Bed Days parameter |
+| `KPI - Community` | Formats the Community measure as either a whole-number bed-day value or one-decimal percentage | Council Area parameter + Bed Days parameter + Community source measures |
 
-Workbook evidence currently shows fields including:
+The workbook screenshot shows the source geography field internally as **`Council Areaa`**. This appears to be the existing source-field name and is retained here only when documenting the actual calculation syntax; public-facing dashboard wording remains **Council Area**.
+
+## 1. `Council Area`
+
+![Council Area calculated field](01-council-area-CF.png)
+
+### Purpose
+
+Provides a Boolean match between the user-selected Council Area parameter and the source geography field, while protecting the unselected `Select` state.
+
+### Workbook logic
+
+```text
+IF [Parameters].[Council Area] = "Select" THEN FALSE
+ELSE [Council Areaa] = [Parameters].[Council Area]
+END
+```
+
+### Why it exists
+
+The dashboard uses a parameter rather than exposing the raw source geography field directly. This calculation converts that user selection into a worksheet-level Boolean filter condition.
+
+## 2. `Is Selected Council (Filter)`
+
+![Is Selected Council filter](02-is-council-area-CF.png)
+
+### Purpose
+
+Provides the fuller reporting-geography filter logic, including explicit handling for the Scotland aggregate.
+
+### Workbook logic
+
+```text
+// Is Selected Council (Filter)
+IF [Parameters].[Council Area] = "Select" THEN
+    FALSE
+ELSEIF [Parameters].[Council Area] = "Scotland" THEN
+    [Council Areaa] = "Scotland"
+ELSE
+    [Council Areaa] = [Parameters].[Council Area]
+END
+```
+
+### Why it exists
+
+This allows the same dashboard to work consistently for Scotland and the governed Council Area views while keeping the parameter-driven interface predictable.
+
+The public portfolio uses **Scotland-level results only**, but the calculation demonstrates the reusable managed-workbook architecture.
+
+## 3. `BedDaysView_Filter`
+
+![Bed Days view filter](03-BedDaysView-Filter-CF.png)
+
+### Purpose
+
+Carries the current **Bed Days** parameter value into the worksheet filter layer.
+
+### Workbook logic
+
+The calculation is a direct reference to the Bed Days parameter:
+
+```text
+[Bed Days]
+```
+
+### Why it exists
+
+The dashboard uses separate Numbers and Percentages worksheet pairs. The parameter stores:
+
+```text
+1 = Numbers
+2 = Percentages
+```
+
+`BedDaysView_Filter` gives those sheets a lightweight shared field that can be filtered to the appropriate state.
+
+The screenshot shows this field affecting the main dashboard and all four analytical MSG5 worksheets.
+
+## 4. `KPI - Community`
+
+![Community KPI calculated field](04-KPI-Community-CF.png)
+
+### Purpose
+
+Formats the Community measure according to the active dashboard mode.
+
+### Workbook logic
+
+```text
+IF [Parameters].[Council Area] = "Select" THEN
+    NULL
+
+ELSEIF [Bed Days] = 1 THEN
+    STR(INT(SUM([Community Bed days])))
+
+ELSEIF [Bed Days] = 2 THEN
+    STR(ROUND(SUM([% Community]) * 100, 1)) + "%"
+END
+```
+
+### Behaviour
+
+- when no geography is selected, the field returns `NULL`;
+- in **Numbers** mode, Community bed days are formatted as a whole-number text value;
+- in **Percentages** mode, `% Community` is multiplied by 100, rounded to one decimal place and formatted with a `%` suffix.
+
+This is a useful example of one calculation responding to both the geography state and the Numbers / Percentages parameter.
+
+## Source measures versus calculated fields
+
+The completed worksheet evidence resolves an earlier uncertainty in the draft case study.
+
+The following are **source-supplied measures**, not Tableau percentage calculations created for the dashboard:
+
+### Bed-day measures
+
+- `Community Bed days`
+- `Community/Hospital Bed days`
+- `Large Hospital Bed days`
+- `Palliative Bed days`
+- `Possible Bed days`
+- `Deaths`
+
+### Percentage measures
 
 - `% Community`
 - `% Community/Hospital`
 - `% Large Hospital`
 - `% Palliative`
 
-The upstream supplied dataset already contains percentage measures, so the final case study should confirm whether these Tableau fields directly use the supplied percentages or recalculate them inside Tableau before documenting formulas.
+The main Numbers and Percentages chart/table worksheets use these source fields directly in Measure Values.
 
-### 2. Bed-day display switching
+## Why the calculation layer is deliberately small
 
-A calculated field named:
+MSG5 does not need a large family of bespoke Tableau calculations. Most analytical derivation happens upstream in the governed indicator process. The Tableau layer instead demonstrates:
 
-- `BedDaysView_Filter`
+- parameter-driven interaction;
+- geography-selection logic;
+- controlled worksheet switching;
+- display formatting;
+- accurate use of supplied analytical measures.
 
-is visible in the worksheet evidence and appears to support switching between the **Numbers** and **Percentages** views.
-
-Its exact formula should be added only after the calculation screenshot is supplied.
-
-### 3. Setting-level values
-
-Fields visible in the workbook include:
-
-- Community Bed days
-- Community/Hospital Bed days
-- Large Hospital Bed days
-- Palliative Bed days
-- Possible Bed days
-- Deaths
-
-These may be source measures rather than Tableau calculations. The evidence review will distinguish **source columns** from **calculated fields** so the repository does not overstate the Tableau calculation layer.
-
-### 4. KPI / helper logic
-
-A field named `KPI - Community` is visible in the workbook. It should be documented only if it contributes to the delivered dashboard or another MSG5 interaction shown in the public case study.
-
-### 5. Geography / interface helper logic
-
-The workbook also shows Council Area and navigation-related helper fields. These should be included only where they demonstrate meaningful filter, worksheet or navigation behaviour.
-
-## Documentation rule
-
-For each genuine calculated field we retain, document:
-
-```text
-Field name
-Purpose
-Input fields / parameter dependency
-Plain-English logic
-Why it exists in the dashboard
-Screenshot of the Tableau calculation
-```
-
-Do not publish a large collection of screenshots without explanation. The purpose of this folder is to let a technical interviewer understand the calculation architecture quickly.
-
-## Next evidence required
-
-Please supply the calculated-field screenshots for MSG5. Once reviewed, this README can be replaced with the final grouped architecture and, if warranted, a small number of calculation-family subfolders.
+That is the correct technical story for this dashboard and avoids overstating Tableau complexity simply to match the larger Admissions case study.
