@@ -2,7 +2,7 @@
 
 This page documents the upstream methodology behind the Tableau source at a level suitable for a public technical portfolio.
 
-The production **MSG Indicator 5** code was supplied and maintained by another PHS team. I did not develop or run that production pipeline. The purpose of documenting it here is to show that I understood the analytical structure of the data I was reporting in Tableau, while keeping ownership boundaries explicit.
+The production **MSG Indicator 5** code was supplied and maintained by another PHS team. I did not develop or run that production pipeline. The purpose of documenting it here is to show that I understood the analytical structure of the data I was reporting in Tableau while keeping ownership boundaries explicit.
 
 ## Analytical purpose
 
@@ -51,7 +51,7 @@ The upstream methodology classifies hospital activity into:
 
 A hospice/palliative classification can be identified through recognised location codes and the relevant significant-facility coding. Locations not otherwise classified in the inpatient logic are treated as Large Hospital.
 
-The production method subsequently removes inpatient activity classified as **Care Home** from the hospital-setting totals, because care-home time is not intended to be counted as hospital activity in this indicator.
+The production method subsequently removes inpatient activity classified as **Care Home** from the hospital-setting totals because care-home time is not intended to be counted as hospital activity in this indicator.
 
 ## Overlapping inpatient activity
 
@@ -113,14 +113,25 @@ Together, these represent the full six-month distribution and should sum to appr
 
 The supplied CSV used for the Tableau work contains **170 aggregated rows and 12 fields** covering:
 
-- five financial years: 2020/21 to 2024/25p;
+- five financial years: **2020/21 to 2024/25p**;
 - 34 reporting geography values, including Scotland;
 - four setting-level bed-day measures;
-- possible bed days;
+- Possible bed days;
 - four percentage measures;
-- deaths.
+- Deaths.
 
 The source dataset is not committed to this public repository.
+
+## Confirmed source-versus-Tableau calculation boundary
+
+The completed worksheet evidence now confirms an important design point that was previously left open while the case study was being built:
+
+- the **Numbers** worksheets use the supplied source fields `Community Bed days`, `Community/Hospital Bed days`, `Large Hospital Bed days` and `Palliative Bed days` directly in Measure Values;
+- the **Percentages** worksheets use the supplied source fields `% Community`, `% Community/Hospital`, `% Large Hospital` and `% Palliative` directly in Measure Values;
+- Tableau therefore does **not** recalculate the four percentage measures for the main chart/table views;
+- Tableau calculations are instead focused on interface, geography selection, view switching and presentation logic.
+
+This distinction keeps the portfolio accurate: the upstream indicator mathematics remain team-owned, while the Tableau layer demonstrates how governed outputs are translated into an interactive reporting product.
 
 ## High-level architecture
 
@@ -145,8 +156,20 @@ SMR01 + SMR01E + SMR04 inpatient activity
                     ↓
        supplied MSG5 aggregate output
                     ↓
-        Tableau reporting layer
+  Tableau source measures + interface logic
+                    ↓
+ Numbers / Percentages chart + table dashboard
 ```
+
+## Reporting-layer reasonableness check
+
+The dashboard tooltips expose **Deaths** and **Possible Bed days**, allowing the upstream denominator relationship to be checked from the reporting layer. For example, the supplied 2021/22 Scotland tooltip shows **58,441 deaths** and **10,665,483 possible bed days**:
+
+```text
+58,441 × 182.5 = 10,665,482.5
+```
+
+which rounds to the displayed **10,665,483**.
 
 ## Interpretation caveat
 
