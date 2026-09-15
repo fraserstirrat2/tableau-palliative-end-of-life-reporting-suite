@@ -2,158 +2,201 @@
 
 This page documents how the supplied MSG Indicator 5 aggregate output is presented in Tableau.
 
-Compared with the Admissions Dashboard, this is a more compact implementation. The technical value is therefore in **clear parameter-driven presentation, coordinated chart/table behaviour, filtering, information design and accurate translation of a governed source indicator**, rather than in a large calculation layer.
+Compared with the Admissions Dashboard, MSG5 is a more compact implementation. Its technical value is in **clear parameter-driven presentation, coordinated chart/table behaviour, geography selection, filtering, contextual tooltips, information design and accurate translation of a governed source indicator**, rather than in a large calculation layer.
 
 ## Dashboard architecture
 
-The current evidence shows the dashboard combining:
+The evidence confirms that the dashboard combines:
 
-- a stacked bar chart showing bed-day distribution by financial year;
+- a stacked bar chart showing setting-level distribution by financial year;
 - a detailed yearly table;
-- a Council Area reporting filter;
-- a **Bed Days** control for switching between Numbers and Percentages;
-- dedicated navigation/help worksheets;
-- an Information panel explaining the indicator.
+- a **Council Area** parameter for reporting geography;
+- a **Bed Days** parameter for switching between Numbers and Percentages;
+- calculated fields supporting geography selection and view switching;
+- shared Home, Go To, Help and Information worksheets;
+- tooltips containing additional contextual measures including Deaths and Possible Bed days.
 
-The chart and table are designed to respond together so the user sees the same analytical state in both visual and tabular form.
+The chart and table are designed to respond together so the user sees one consistent analytical state.
 
-## Bed Days control
+## Bed Days parameter
 
-The main reporting control is labelled **Bed Days** and has two states:
+The main reporting control is **Bed Days**, configured as an integer parameter with a fixed list:
 
-1. **Numbers**
-2. **Percentages**
+| Stored value | Display value |
+| ---: | --- |
+| `1` | Numbers |
+| `2` | Percentages |
 
-The supplied parameter definition will be documented in the [Parameters](parameters/README.md) section once its screenshot has been added.
+The screenshot confirms **Numbers** as the current value and the workbook-opening behaviour as **Current value**.
 
-At reporting level, the control changes the dashboard between:
+![Bed Days parameter](parameters/01-bed-days.png)
+
+This means a simple user-facing dropdown drives the internal worksheet-selection logic without exposing numeric parameter codes to the user.
+
+## Council Area parameter
+
+The **Council Area** parameter is a string list. The supplied configuration shows **Scotland** as the current value and includes the available Council Area reporting geographies.
+
+![Council Area parameter](parameters/01-council-area.png)
+
+Two calculated fields support this control:
+
+- `Council Area`
+- `Is Selected Council (Filter)`
+
+Together they compare the selected parameter value with the source geography field and handle the Scotland national state explicitly.
+
+## Numbers view
+
+### Stacked bar — `MSG - Settings Breakdown (Bar)`
+
+![MSG5 Numbers bar worksheet](worksheets/01-MSG5-Settings-Breakdown-Numbers.png)
+
+The worksheet evidence confirms:
+
+- **Columns:** Measure Values
+- **Rows:** Financial Year
+- filters including Financial Year, the Council Area selection, `BedDaysView_Filter`, Council Area and Measure Names;
+- **Measure Values:** Community Bed days, Community/Hospital Bed days, Large Hospital Bed days and Palliative Bed days;
+- **Measure Names** controlling the setting colours;
+- Possible Bed days and Deaths added to the Marks/tooltip layer.
+
+The Numbers bar therefore uses the supplied aggregate bed-day measures directly.
+
+### Detailed table — `MSG - Bed Days by Setting`
+
+![MSG5 Numbers table worksheet](worksheets/03-MSG5-Settings-Table-Numbers.png)
+
+The table uses:
+
+- **Columns:** Measure Names
+- **Rows:** Financial Year
+- **Text:** Measure Values
+- the same four source-supplied bed-day measures;
+- `BedDaysView_Filter` and Council Area selection logic so it stays aligned with the active dashboard state.
+
+## Percentages view
+
+### Stacked bar — `MSG - Settings Breakdown (Bar) (2)`
+
+![MSG5 Percentages bar worksheet](worksheets/02-MSG5-Settings-Breakdown-Percentages.png)
+
+The Percentage bar uses the supplied percentage measures directly:
+
+- `% Community`
+- `% Community/Hospital`
+- `% Large Hospital`
+- `% Palliative`
+
+This confirms that Tableau is presenting the upstream percentage output rather than rebuilding those four formulas in the main visual layer.
+
+### Detailed table — `MSG - Bed Days by Setting %`
+
+![MSG5 Percentages table worksheet](worksheets/04-MSG5-Settings-Table-Percentages.png)
+
+The table mirrors the same four percentage measures by Financial Year and remains tied to the selected Council Area and Percentages state.
+
+## Coordinated view switching
+
+The workbook contains separate Numbers and Percentages worksheet pairs rather than forcing both formats into a single visual.
+
+`BedDaysView_Filter` is a lightweight helper calculation that returns the current Bed Days parameter value. The relevant worksheet pair can therefore be filtered to the correct state while the user experiences one dashboard-level selector.
+
+At reporting level the design is:
+
+```text
+Bed Days = Numbers (1)
+        ↓
+Numbers bar + Numbers table
+```
+
+```text
+Bed Days = Percentages (2)
+        ↓
+Percentage bar + Percentage table
+```
+
+This is a simple implementation choice that keeps formatting and measure logic clean while presenting a single coherent dashboard to the user.
+
+## Council Area selection logic
+
+The Council Area parameter is not just a visible dropdown. Supporting calculations determine whether the underlying source geography matches the selected parameter state.
+
+The evidence shows two layers:
+
+1. `Council Area` — a direct comparison between the parameter and source Council Area field, with a guard for the `Select` state;
+2. `Is Selected Council (Filter)` — an explicit Scotland branch plus the selected-area comparison.
+
+This allows the same dashboard structure to be reused for the national Scotland view and the governed local reporting views in the managed workbook.
+
+The public portfolio remains restricted to Scotland-level output.
+
+## Tooltip design
+
+The bar worksheets add **Possible Bed days** and **Deaths** to the tooltip layer.
+
+In the supplied Scotland Percentages dashboard, hovering 2021/22 shows:
+
+- Financial Year: 2021/22
+- Community: 89.70%
+- Deaths: 58,441
+- Possible Bed days: 10,665,483
+
+This gives users context behind the proportion without overcrowding the main visual.
+
+## Dashboard states
+
+The final dashboard evidence includes two public-safe Scotland states:
 
 ### Numbers
 
-Absolute bed-day values for:
-
-- Community;
-- Community Hospital;
-- Large Hospital;
-- Hospice / Specialist Palliative Care Unit.
+![MSG5 Scotland Numbers](dashboard-screenshots/01-L6MOL-Scotland-Level-Dashboard-Overview-Numbers.png)
 
 ### Percentages
 
-The corresponding proportion of total possible six-month bed days in each setting.
+![MSG5 Scotland Percentages](dashboard-screenshots/02-L6MOL-Scotland-Level-Dashboard-Overview-Percentages.png)
 
-This avoids duplicating the entire dashboard just to answer the two closely related questions:
+The same legend, financial-year ordering, Council Area selection and navigation components are retained between states.
 
-```text
-How many bed days were spent in each setting?
-```
+## Shared interface worksheets
 
-and
+The dashboard uses the reporting-suite navigation/help convention:
 
-```text
-What share of the final six months was spent in each setting?
-```
+- `Discovery home`
+- `Discovery Go To`
+- `Discovery Help`
+- `Discovery Info`
 
-## Numbers table
+Evidence was supplied for these components. The Home, Go To and Help worksheets are suitable as technical implementation evidence. The Information worksheet screenshot itself contains an explicit internal distribution warning, so that raw screenshot should not be published in the public repository; its analytical content is documented textually instead.
 
-The **Bed Days by Setting** worksheet displays financial year down the rows and the four setting measures across columns.
+## Calculated fields
 
-In the Scotland-level example, 2024/25p displays approximately:
+The supplied evidence confirms four relevant calculated/helper fields:
 
-- Community: 9,467,029 bed days;
-- Community Hospital: 166,842 bed days;
-- Large Hospital: 945,892 bed days;
-- Hospice / Specialist Palliative Care Unit: 45,571 bed days.
+- `Council Area`
+- `Is Selected Council (Filter)`
+- `BedDaysView_Filter`
+- `KPI - Community`
 
-The displayed values are rounded for presentation while the source output retains half-day values where produced by the six-month methodology.
-
-## Percentage table
-
-The percentage version uses the same four categories and financial-year structure, but displays the distribution of possible bed days.
-
-For Scotland in 2024/25p, the supplied source shows:
-
-- Community: 89.1%;
-- Community Hospital: 1.6%;
-- Large Hospital: 8.9%;
-- Hospice / Specialist Palliative Care Unit: 0.4%.
-
-## Stacked bar chart
-
-The stacked bar chart gives the same distribution a visual hierarchy, allowing year-to-year changes in the relative share of each care setting to be seen quickly.
-
-The percentage version is especially useful for comparing composition across financial years because every bar represents the same 100% analytical denominator.
-
-A matching Numbers version will be added to the evidence set once supplied.
-
-## Council Area filter
-
-The dashboard includes a Council Area control that changes the reporting geography while keeping the same chart/table structure.
-
-The source data contains Council Area values as well as a Scotland aggregate. The public portfolio will use approved examples and will not deliberately surface granular combinations that could create disclosure concerns.
-
-## Filter / display logic
-
-The Tableau development screenshots show a calculated field named **BedDaysView_Filter** being used alongside the Bed Days control. The exact formula will be documented only after its calculation screenshot is supplied and reviewed.
-
-The current implementation evidence also shows separate Number and Percentage worksheets. This suggests the dashboard switches which analytical worksheet is displayed according to the active Bed Days state rather than trying to force both formats into one visual.
-
-That implementation choice will be confirmed from the remaining parameter/calculated-field screenshots before the case study is marked complete.
-
-## Setting measures visible in Tableau
-
-The current workbook evidence includes fields for:
-
-- Community Bed days;
-- Community/Hospital Bed days;
-- Large Hospital Bed days;
-- Palliative Bed days;
-- Possible Bed days;
-- Deaths;
-- % Community;
-- % Community/Hospital;
-- % Large Hospital;
-- % Palliative.
-
-There is also a **KPI - Community** field visible in the workbook, which will be documented if it is part of the delivered dashboard behaviour.
-
-## Worksheet composition
-
-Observed analytical worksheets include:
-
-- MSG - Bed Days by Setting;
-- MSG - Bed Days by Setting %;
-- MSG - Settings Breakdown (Bar) — Numbers;
-- MSG - Settings Breakdown (Bar) — Percentages.
-
-Shared interface worksheets include:
-
-- Home;
-- Go To;
-- Help;
-- Information.
-
-The final inventory will be recorded in [Worksheets](worksheets/README.md) once the full worksheet screenshot set is available.
+The main chart/table measures are source fields rather than extra Tableau calculations. See [Calculated Fields](calculated-fields/README.md).
 
 ## Information panel
 
-The Information panel explains the purpose and use of the dashboard rather than leaving the user to infer the indicator definition from the chart.
+The managed Information panel explains:
 
-It covers:
-
-- the final-six-month observation period;
-- the four setting categories;
-- Numbers versus Percentages;
-- the financial-year structure;
-- Council Area filtering;
-- chart/table interpretation;
-- the broad linked-data basis of the indicator;
-- data-completeness and reporting caveats.
-
-This is an important part of the BI design because the measure is conceptually more complex than a simple event count.
+- that the dashboard presents the last six months of life across Community, Community Hospital, Large Hospital and Hospice / Palliative Care;
+- that Bed Days can be shown as total numbers or percentages;
+- that data are shown by financial year and can be filtered by Council Area;
+- how to read the stacked bar and detailed table;
+- that users can hover for detailed values;
+- that the indicator represents the proportion of time spent in different settings during the final six months of life;
+- that Community includes care at home and care homes;
+- that linked hospital activity and death records underpin the indicator;
+- that source completeness, reporting differences and service configuration need to be considered when interpreting results.
 
 ## Why this implementation is useful
 
-The implementation is deliberately simple for the end user:
+The end-user interaction is deliberately simple:
 
 ```text
 Choose geography
@@ -162,7 +205,9 @@ Choose Numbers or Percentages
       ↓
 Read the same result in chart + table form
       ↓
-Use embedded information for interpretation
+Hover for denominator/context measures
+      ↓
+Use embedded guidance for interpretation
 ```
 
-That simplicity is a strength. The upstream indicator methodology is substantial, but the Tableau layer keeps the reporting interaction controlled and easy to explain.
+That simplicity is a strength. The upstream indicator methodology is substantial, while the Tableau layer keeps the reporting interaction controlled, consistent with the wider suite and easy to explain.
