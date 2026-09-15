@@ -1,31 +1,47 @@
 # MSG5 — Dashboard Screenshots
 
-This folder will contain the approved screenshot evidence for the **Last 6 Months of Life by Setting** dashboard.
+This folder contains the approved public evidence for the **Last 6 Months of Life by Setting** dashboard.
 
-The purpose is not to upload every possible filter state. The evidence set should demonstrate the two main display modes, the dashboard layout, the interaction design and the interpretation guidance clearly.
+The evidence set is intentionally small: it demonstrates the two main analytical states clearly without uploading every possible Council Area or filter combination.
 
-## Planned evidence set
+## Evidence set
 
-| Evidence | Purpose | Status |
+| File | Purpose | Status |
 | --- | --- | --- |
-| Scotland — Bed Days **Numbers** | Shows absolute bed-day distribution and the detailed table | To add |
-| Scotland — Bed Days **Percentages** | Shows the 100% distribution view and percentage table | To add |
-| Information panel | Documents definitions, usage guidance and interpretation caveats | To add after final public wording review |
-| Optional approved Council Area example | Demonstrates filter behaviour if useful and public-safe | Review before adding |
+| `01-L6MOL-Scotland-Level-Dashboard-Overview-Numbers.png` | Final Scotland-level **Numbers** state showing absolute setting-level bed days across 2020/21–2024/25p | Ready to upload |
+| `02-L6MOL-Scotland-Level-Dashboard-Overview-Percentages.png` | Final Scotland-level **Percentages** state showing the proportional distribution across the same four settings and years | Ready to upload |
 
-Additional screenshots should only be added where they prove a distinct piece of functionality or development evidence.
+## Numbers view
 
-## Suggested filenames
+![MSG5 Scotland Numbers](01-L6MOL-Scotland-Level-Dashboard-Overview-Numbers.png)
 
-```text
-01-scotland-bed-days-numbers.png
-02-scotland-bed-days-percentages.png
-03-information-panel.png
-04-approved-council-area-example.png   # optional
-```
+The Numbers state shows the four setting-level bed-day measures as a stacked bar plus detailed table.
+
+## Percentages view
+
+![MSG5 Scotland Percentages](02-L6MOL-Scotland-Level-Dashboard-Overview-Percentages.png)
+
+The Percentages state uses the same dashboard structure while switching to the four supplied percentage measures. The supplied screenshot also demonstrates tooltip context using Financial Year, the active percentage, Deaths and Possible Bed days.
+
+## Information-panel evidence
+
+A Tableau screenshot of the managed **Information** panel was supplied during evidence review. It contains useful guidance about:
+
+- the purpose of the dashboard;
+- the four care settings;
+- Numbers / Percentages;
+- financial years and Council Area selection;
+- chart/table interpretation;
+- tooltip use;
+- linked hospital/death-record context;
+- data-completeness and service-configuration caveats.
+
+However, that screenshot also contains an explicit **“Management information only, not for onward distribution”** warning. It is therefore deliberately **not** included in the public screenshot set. Its relevant analytical content is documented textually in the case-study README and Tableau implementation page instead.
+
+## Why there is no Council Area screenshot
+
+The managed workbook supports Council Area reporting, but the public portfolio boundary is **Scotland-level evidence only**. The parameter/filter implementation is demonstrated through technical screenshots without publishing local analytical results.
 
 ## Public portfolio rule
 
-Use only approved screenshots that are suitable for public portfolio use. Do not expose source files, internal URLs, credentials, local operational details or unnecessary granular combinations.
-
-The main case-study README should surface the strongest one or two screenshots; the rest can remain here as supporting evidence for a technical reviewer.
+Only approved screenshots suitable for public portfolio use should be committed here. Do not expose source files, internal URLs, credentials, local operational details or unnecessary granular combinations.
