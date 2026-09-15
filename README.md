@@ -1,6 +1,6 @@
 # Palliative & End-of-Life Care Tableau Reporting Suite
 
-> **Portfolio status: Work in progress** — the first full technical case study is complete and the remaining dashboard areas are being added progressively over the coming weeks. This repository is intentionally being developed in layers so that each published section is accurate, evidence-led and safe for public viewing rather than rushed for completeness.
+> **Portfolio status: Work in progress** — the Admissions technical case study is complete and a matching evidence framework is now in place for **all five dashboard areas**. The remaining work is evidence capture and dashboard-specific rewriting: screenshots, worksheets, controls, calculated fields, methodology, QA and development history are being added progressively so each section stays accurate, evidence-led and safe for public viewing.
 
 ![Admissions Dashboard — Scotland-level example](dashboards/admissions/dashboard-screenshots/09-12-months-admissions-per-death.png)
 
@@ -32,17 +32,17 @@ The underlying analytical work is team-maintained, so the portfolio deliberately
 
 ## Reporting-suite dashboard areas
 
-The Tableau workbook contains five main analytical areas. The **Admissions Dashboard** is the first completed technical case study; the remaining sections will be added using the same evidence-led structure as their public-safe material is prepared.
+The Tableau workbook contains five main analytical areas. The **Admissions Dashboard** is the completed reference case study. The remaining four now use the same core evidence structure, but each will be rewritten around its own real implementation rather than being forced into identical technical complexity.
 
 | Dashboard area | Portfolio status | Current public evidence |
 | --- | --- | --- |
 | **Admissions Dashboard** | ✅ Full technical case study complete | Five pre-death time windows, two trend measures, parameter-driven reporting, Scotland comparator logic, QA and stakeholder-led development |
-| **Last 6 Months of Life by Setting (MSG5)** | 🚧 Case study in progress | Scotland-level overview screenshot now published |
-| **Key Information Summary** | 🚧 Case study in progress | Scotland-level overview screenshot now published |
-| **Service Utilisation** | 🚧 Case study in progress | Scotland-level overview screenshot now published |
-| **Location of Death** | 🚧 Case study in progress | Scotland-level overview screenshot now published |
+| **Last 6 Months of Life by Setting (MSG5)** | 🚧 Detailed framework complete — evidence capture in progress | Scotland-level overview plus drafted methodology, Tableau implementation, validation, worksheet, parameter and calculated-field structure |
+| **Key Information Summary** | 🧱 Case-study framework created | Scotland-level overview plus matching README/methodology/implementation/validation/evidence folders ready for Tableau evidence |
+| **Service Utilisation** | 🧱 Case-study framework created | Scotland-level overview plus matching README/methodology/implementation/validation/evidence folders ready for Tableau evidence |
+| **Location of Death** | 🧱 Case-study framework created | Scotland-level overview plus matching README/methodology/implementation/validation/evidence folders ready for Tableau evidence |
 
-The overview screenshots below give an immediate view of the wider reporting suite while the supporting technical documentation is developed dashboard by dashboard.
+The overview screenshots below give an immediate view of the wider reporting suite while the supporting technical evidence is completed dashboard by dashboard.
 
 ## Reporting suite — Scotland-level visual overview
 
@@ -54,25 +54,25 @@ The Admissions Dashboard is the first fully documented technical case study and 
 
 ### Last 6 Months of Life by Setting
 
-This dashboard provides a Scotland-level view of activity across care settings during the final six months of life. The detailed case study will be added as the supporting methodology, calculations, controls and validation evidence are documented.
+This dashboard provides a Scotland-level view of activity across care settings during the final six months of life. Its detailed framework is already in place; the remaining work is to add the approved Numbers/Percentages dashboard states, worksheet evidence, Bed Days control, calculated-field evidence and final validation/development detail.
 
 ![Last 6 Months of Life by Setting — Scotland-level overview](dashboards/01-L6MOL-Scotland-Level-Dashboard-Overview.png)
 
 ### Key Information Summary
 
-This dashboard provides a high-level Scotland summary of key palliative and end-of-life care measures. The future case study will document the reporting logic, information design, analytical context and QA behind the view.
+This dashboard provides a high-level Scotland summary of key palliative and end-of-life care measures. Its case-study framework is now in place and will be populated from the live Tableau implementation, source/methodology evidence and public-safe screenshots.
 
 ![Key Information Summary — Scotland-level overview](dashboards/01-KIS-Scotland-Level-Dashboard-Overview.png)
 
 ### Service Utilisation
 
-This dashboard provides a Scotland-level overview of service-use patterns within the wider reporting suite. Detailed documentation covering interactions, measures, validation and analytical interpretation will follow.
+This dashboard provides a Scotland-level overview of service-use patterns within the wider reporting suite. Its case-study framework is now in place and will be populated with the real worksheets, controls, measures, validation and interpretation evidence.
 
 ![Service Utilisation — Scotland-level overview](dashboards/01-Service-Utilisation-Scotland-Level-Dashboard-Overview.png)
 
 ### Location of Death
 
-This dashboard provides a Scotland-level view of location-of-death reporting. The supporting case study will later document the underlying measures, visual design, filters, validation process and stakeholder reporting context.
+This dashboard provides a Scotland-level view of location-of-death reporting. Its case-study framework is now in place and will be completed using the actual measures, visual design, filters/controls, validation process and stakeholder-development evidence.
 
 ![Location of Death — Scotland-level overview](dashboards/01-LOD-Scotland-Level-Dashboard-Overview.png)
 
@@ -130,7 +130,7 @@ The repository is being built **dashboard by dashboard**, using the same core st
 9. reporting value and employer-relevant skills;
 10. approved visual evidence.
 
-This approach means the repository can remain publicly useful while the wider suite is still being documented, without presenting unfinished technical sections as complete.
+The common structure is a framework, not a requirement to manufacture identical complexity. A dashboard with a small calculation or parameter layer will be documented proportionately rather than padded simply to match Admissions.
 
 ## Public portfolio and governance boundary
 
@@ -151,13 +151,14 @@ The repository should therefore be read as **evidence of professional BI deliver
 - [x] Complete the Admissions Dashboard technical case study.
 - [x] Publish Admissions Scotland-level visual evidence and technical documentation.
 - [x] Add a representative Scotland-level screenshot for each remaining dashboard area.
-- [ ] Build the Last 6 Months of Life by Setting case study.
-- [ ] Build the Key Information Summary case study.
-- [ ] Build the Service Utilisation case study.
-- [ ] Build the Location of Death case study.
+- [x] Create the common case-study framework for MSG5, Key Information Summary, Service Utilisation and Location of Death.
+- [ ] Complete MSG5 evidence capture and rewrite the framework into the finished case study.
+- [ ] Complete the Key Information Summary case study from its live Tableau evidence.
+- [ ] Complete the Service Utilisation case study from its live Tableau evidence.
+- [ ] Complete the Location of Death case study from its live Tableau evidence.
 - [ ] Complete a final suite-wide consistency, accuracy and governance review.
 - [ ] Add an employer-facing walkthrough once the written evidence package is mature.
 
 ---
 
-**Built as an employer-facing portfolio of professional Tableau / BI delivery, with the repository continuing to expand as the remaining dashboard evidence is prepared.**
+**Built as an employer-facing portfolio of professional Tableau / BI delivery, with a consistent evidence framework across the suite and dashboard-specific detail added only where supported by the real implementation.**
