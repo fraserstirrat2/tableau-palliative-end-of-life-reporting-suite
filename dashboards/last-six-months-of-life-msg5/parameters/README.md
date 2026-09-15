@@ -1,45 +1,99 @@
 # MSG5 — Parameters and User Controls
 
-This folder will document the parameter/control logic used by the **Last 6 Months of Life by Setting** dashboard.
+This folder documents the two parameters that drive the **Last 6 Months of Life by Setting** dashboard.
 
-## Bed Days
+## 1. Bed Days
 
-The main dashboard control is **Bed Days**, with two user-facing states:
+The main user-facing display selector is the **Bed Days** parameter.
 
-1. **Numbers**
-2. **Percentages**
+![Bed Days parameter](01-bed-days.png)
 
-The remaining parameter screenshot should be added here so the case study can show the actual Tableau configuration rather than relying only on a written description.
+### Configuration
+
+| Property | Value |
+| --- | --- |
+| Name | `Bed Days` |
+| Data type | Integer |
+| Allowable values | Fixed list |
+| Current value in supplied evidence | Numbers |
+| Value when workbook opens | Current value |
+
+### Values
+
+| Stored value | Display value |
+| ---: | --- |
+| `1` | Numbers |
+| `2` | Percentages |
 
 ### Reporting role
 
-The control determines which version of the analytical display is active:
+The parameter lets the user switch the same dashboard between:
 
 ```text
-Bed Days = Numbers
-    ↓
-Absolute bed-day bar + table
+Bed Days = 1 / Numbers
+        ↓
+absolute bed-day stacked bar + table
 ```
+
+and:
 
 ```text
-Bed Days = Percentages
-    ↓
-Percentage-distribution bar + table
+Bed Days = 2 / Percentages
+        ↓
+percentage-distribution stacked bar + table
 ```
 
-A calculated field named **BedDaysView_Filter** is visible in the workbook evidence and appears to participate in this switching logic. Its exact formula will be documented in the Calculated Fields section once the screenshot is supplied.
+A calculated field named **`BedDaysView_Filter`** returns the active parameter value and is used within the worksheet filter architecture so the appropriate worksheet pair is shown.
 
-## Council Area
+This is a good example of using a simple parameter to keep one reporting interface while allowing different measure formats and worksheet formatting behind it.
 
-Council Area is a reporting filter rather than the central Numbers/Percentages parameter. It allows the same dashboard structure to be reused across the available reporting geographies.
+## 2. Council Area
 
-## Evidence to add
+The second user-facing parameter is **Council Area**.
 
-Suggested parameter/control evidence:
+![Council Area parameter](01-council-area.png)
+
+### Configuration
+
+| Property | Value |
+| --- | --- |
+| Name | `Council Area` |
+| Data type | String |
+| Allowable values | Fixed list |
+| Current value in supplied evidence | Scotland |
+| Value when workbook opens | Current value |
+
+The visible list includes **Scotland** plus the available Council Area reporting geographies.
+
+### Reporting role
+
+The parameter allows the managed workbook to reuse the same dashboard structure for the Scotland aggregate and Council Area reporting states.
+
+It is supported by:
+
+- `Council Area`
+- `Is Selected Council (Filter)`
+
+These calculations compare the selected parameter value with the source geography field and include explicit handling for Scotland and the guarded `Select` state.
+
+The public portfolio demonstrates this technical pattern but publishes **Scotland-level analytical output only**.
+
+## Parameter-to-dashboard architecture
 
 ```text
-01-bed-days-parameter.png
-02-council-area-filter.png   # only if useful as implementation evidence
+Council Area parameter
+        ↓
+Council Area / Is Selected Council calculations
+        ↓
+selected reporting geography
+
+Bed Days parameter
+        ↓
+BedDaysView_Filter
+        ↓
+Numbers OR Percentages worksheet pair
 ```
 
-The goal is to document how the dashboard works, not to duplicate screenshots that are already obvious from the finished dashboard view.
+## Public evidence rule
+
+The screenshots in this folder demonstrate configuration only. They should not be used to publish local-area analytical results. The case study remains within the agreed Scotland-level public boundary.
