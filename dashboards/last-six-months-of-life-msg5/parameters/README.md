@@ -51,7 +51,7 @@ This is a good example of using a simple parameter to keep one reporting interfa
 
 The second user-facing parameter is **Council Area**.
 
-![Council Area parameter](01-council-area.png)
+![Council Area parameter](02-council-area.png)
 
 ### Configuration
 
