@@ -1,6 +1,6 @@
 # Palliative & End-of-Life Care Tableau Reporting Suite
 
-> **Portfolio status: Work in progress** — the Admissions technical case study is complete, the **MSG5 written technical case study has now been completed against the supplied Tableau evidence**, and a matching evidence framework is in place for all five dashboard areas. MSG5 only needs its public-safe screenshot files placed into the referenced GitHub folders before the final suite-level review.
+> **Portfolio status:** two complete technical case studies — **Admissions Dashboard** and **Last 6 Months of Life by Setting (MSG5)** — with matching evidence frameworks already in place for Key Information Summary, Service Utilisation and Location of Death.
 
 ![Admissions Dashboard — Scotland-level example](dashboards/admissions/dashboard-screenshots/09-12-months-admissions-per-death.png)
 
@@ -13,7 +13,7 @@ The portfolio is designed for two audiences:
 - **Recruiters and hiring managers** can use this homepage for a concise overview of the project, my contribution and the BI skills demonstrated.
 - **Technical reviewers** can follow the links into individual dashboard case studies for methodology, Tableau implementation, calculated fields, parameters, worksheets, validation evidence and development history.
 
-The production reporting environment uses linked health and death-record data. This public repository therefore focuses on **approved Scotland-level screenshots, reporting methodology and technical documentation** rather than publishing underlying datasets, operational code, workbook files or granular outputs.
+The production reporting environment uses linked health and death-record data. This public repository therefore focuses on **approved Scotland-level analytical screenshots, reporting methodology and technical documentation** rather than publishing underlying datasets, operational code, workbook files or granular outputs.
 
 ## My contribution
 
@@ -32,33 +32,29 @@ The underlying analytical work is team-maintained, so the portfolio deliberately
 
 ## Reporting-suite dashboard areas
 
-The Tableau workbook contains five main analytical areas. The **Admissions Dashboard** is the completed reference case study. The remaining dashboards use the same core evidence structure, but each is documented around its actual implementation rather than being forced into identical technical complexity.
+The Tableau workbook contains five main analytical areas. **Admissions** and **MSG5** are now complete technical case studies. The remaining dashboards use the same core evidence structure but will be documented around their actual implementation rather than being forced into identical technical complexity.
 
 | Dashboard area | Portfolio status | Current public evidence |
 | --- | --- | --- |
 | **Admissions Dashboard** | ✅ Full technical case study complete | Five pre-death time windows, two trend measures, parameter-driven reporting, Scotland comparator logic, QA and stakeholder-led development |
-| **Last 6 Months of Life by Setting (MSG5)** | 🟡 Written technical case study complete — screenshot upload pending | Finalised methodology, Tableau implementation, validation, worksheet, parameter and calculated-field documentation based on the supplied evidence; public-safe image manifest prepared |
+| **Last 6 Months of Life by Setting (MSG5)** | ✅ Full technical case study complete | Scotland Numbers/Percentages states, two parameters, four analytical worksheets, four relevant calculated/helper fields, Information/navigation evidence, methodology and QA |
 | **Key Information Summary** | 🧱 Case-study framework created | Scotland-level overview plus matching README/methodology/implementation/validation/evidence folders ready for Tableau evidence |
 | **Service Utilisation** | 🧱 Case-study framework created | Scotland-level overview plus matching README/methodology/implementation/validation/evidence folders ready for Tableau evidence |
 | **Location of Death** | 🧱 Case-study framework created | Scotland-level overview plus matching README/methodology/implementation/validation/evidence folders ready for Tableau evidence |
-
-The overview screenshots below give an immediate view of the wider reporting suite while the supporting technical evidence is completed dashboard by dashboard.
 
 ## Reporting suite — Scotland-level visual overview
 
 ### Admissions Dashboard
 
-The Admissions Dashboard is the first fully documented technical case study and currently provides the deepest evidence of Tableau implementation, analytical design, QA and iterative stakeholder development.
+The Admissions Dashboard provides the deepest evidence of parameter-driven analytical interaction, time-window logic, comparator calculations, QA and iterative stakeholder development.
 
 ![Admissions Dashboard — 12 months before death, Admissions per Death](dashboards/admissions/dashboard-screenshots/09-12-months-admissions-per-death.png)
 
 ### Last 6 Months of Life by Setting
 
-This dashboard provides a Scotland-level view of activity across care settings during the final six months of life. The detailed written case study is now complete: it documents the upstream ownership boundary, source methodology, Numbers/Percentages parameter design, Council Area logic, four analytical worksheets, calculated fields, tooltip context and validation approach. The supplied public-safe screenshots only need to be committed to their evidence folders.
+MSG5 translates a governed end-of-life indicator into a compact Tableau interface where users can move between absolute bed-day totals and proportional distributions across four care settings.
 
-![Last 6 Months of Life by Setting — Scotland-level overview](dashboards/01-L6MOL-Scotland-Level-Dashboard-Overview.png)
-
-[Open the MSG5 technical case study](dashboards/last-six-months-of-life-msg5/README.md) · [Open the screenshot upload manifest](dashboards/last-six-months-of-life-msg5/UPLOAD-MANIFEST.md)
+![Last 6 Months of Life by Setting — Scotland-level overview](dashboards/last-six-months-of-life-msg5/dashboard-screenshots/01-L6MOL-Scotland-Level-Dashboard-Overview-Numbers.png)
 
 ### Key Information Summary
 
@@ -80,9 +76,7 @@ This dashboard provides a Scotland-level view of location-of-death reporting. It
 
 ## Completed case study — Admissions Dashboard
 
-The Admissions Dashboard is currently the most complete evidence package in the repository and establishes the documentation standard for the wider suite.
-
-It brings multiple pre-death hospital-admission analyses into one reusable Tableau interface, supporting:
+The Admissions Dashboard brings multiple pre-death hospital-admission analyses into one reusable Tableau interface, supporting:
 
 - **7 days, 14 days, 3 months, 6 months and 12 months** before death;
 - switching between **Admissions per Death** and **Average Length of Stay**;
@@ -103,6 +97,33 @@ The case study includes **10 approved Scotland-level dashboard states, 7 Tableau
 - [Parameters](dashboards/admissions/parameters/README.md)
 - [Calculated fields](dashboards/admissions/calculated-fields/README.md)
 - [Worksheets](dashboards/admissions/worksheets/README.md)
+
+## Completed case study — Last 6 Months of Life by Setting (MSG5)
+
+MSG5 demonstrates a different BI problem from Admissions: a substantial indicator is calculated upstream by another team, while the Tableau layer needs to present that governed output clearly, accurately and with an explicit ownership boundary.
+
+The completed case study demonstrates:
+
+- a **Bed Days** parameter switching between **Numbers** and **Percentages**;
+- a **Council Area** parameter with supporting Tableau selection logic;
+- paired stacked-bar and detailed-table worksheets for the two display states;
+- direct use of source-supplied bed-day and percentage measures;
+- lightweight calculated/helper fields for geography selection, view switching and display formatting;
+- tooltip context using Deaths and Possible Bed days;
+- embedded Information, Home, Help and Go To components;
+- source-to-dashboard reconciliation and denominator reasonableness checks;
+- clear attribution of upstream MSG Indicator 5 methodology versus my Tableau reporting contribution.
+
+### Explore the MSG5 evidence
+
+- [MSG5 — Technical Case Study](dashboards/last-six-months-of-life-msg5/README.md)
+- [Dashboard screenshots](dashboards/last-six-months-of-life-msg5/dashboard-screenshots/README.md)
+- [Data pipeline and methodology](dashboards/last-six-months-of-life-msg5/data-pipeline-and-methodology.md)
+- [Tableau implementation](dashboards/last-six-months-of-life-msg5/tableau-implementation.md)
+- [Validation and development](dashboards/last-six-months-of-life-msg5/validation-and-development.md)
+- [Parameters](dashboards/last-six-months-of-life-msg5/parameters/README.md)
+- [Calculated fields](dashboards/last-six-months-of-life-msg5/calculated-fields/README.md)
+- [Worksheets](dashboards/last-six-months-of-life-msg5/worksheets/README.md)
 
 ## Technical and professional capability demonstrated
 
@@ -141,10 +162,10 @@ The production reporting solution uses linked health and death-record informatio
 - no patient-level or granular source data is published;
 - no Tableau workbook or extracts are distributed;
 - no operational R or SQL code containing internal logic or paths is published;
-- screenshots are restricted to approved **Scotland-level aggregated views**;
+- analytical dashboard screenshots are restricted to approved **Scotland-level aggregated views**;
+- parameter, calculated-field and worksheet screenshots are included only to demonstrate technical configuration and do not publish local analytical results;
 - methodology is described at a level that demonstrates analytical and BI capability without exposing restricted information;
-- shared/team-owned analytical work is not presented as solely my own;
-- screenshots carrying explicit internal distribution restrictions are excluded from the public evidence package.
+- shared/team-owned analytical work is not presented as solely my own.
 
 The repository should therefore be read as **evidence of professional BI delivery, reporting design, analytical reasoning, QA and stakeholder-led development**, not as a public release of the underlying management-information system.
 
@@ -155,9 +176,7 @@ The repository should therefore be read as **evidence of professional BI deliver
 - [x] Publish Admissions Scotland-level visual evidence and technical documentation.
 - [x] Add a representative Scotland-level screenshot for each remaining dashboard area.
 - [x] Create the common case-study framework for MSG5, Key Information Summary, Service Utilisation and Location of Death.
-- [x] Complete the MSG5 written evidence review and technical documentation.
-- [ ] Upload the supplied public-safe MSG5 screenshot files into the referenced evidence folders.
-- [ ] Run the final MSG5 consistency/governance review and mark it complete.
+- [x] Complete the MSG5 technical case study, evidence upload and final consistency/governance review.
 - [ ] Complete the Key Information Summary case study from its live Tableau evidence.
 - [ ] Complete the Service Utilisation case study from its live Tableau evidence.
 - [ ] Complete the Location of Death case study from its live Tableau evidence.
