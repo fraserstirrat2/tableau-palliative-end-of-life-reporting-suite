@@ -99,7 +99,7 @@ For each state, checks confirm:
 - switching states does not leave a mismatched chart/table combination;
 - the public Scotland screenshots accurately represent the two final dashboard states.
 
-The `BedDaysView_Filter` field simply returns the current Bed Days parameter value and is applied across the analytical worksheet architecture to support the paired-view design.
+The `BedDaysView_Filter` field returns the current Bed Days parameter value and is applied across the analytical worksheet architecture to support the paired-view design.
 
 ## Geography selection testing
 
@@ -111,7 +111,7 @@ The **Council Area** parameter and supporting calculations are checked to ensure
 - chart and table stay on the same geography;
 - switching Numbers / Percentages does not reset the geography selection.
 
-Only the **Scotland** reporting state is published in this portfolio.
+Only the **Scotland** analytical reporting state is published in this portfolio.
 
 ## Chart / table alignment
 
@@ -124,17 +124,17 @@ Because the dashboard intentionally presents the same indicator in two forms, a 
 - geography selection;
 - underlying source values.
 
-The supplied worksheet screenshots show the same four settings in both the bar and table pairs, using Measure Names / Measure Values consistently.
+The worksheet screenshots show the same four settings in both the bar and table pairs, using Measure Names / Measure Values consistently.
 
 ## Tooltip and contextual QA
 
 The bar worksheets carry additional measures including **Possible Bed days** and **Deaths** on the tooltip layer.
 
-This is useful for validation as well as interpretation: the visible percentage can be checked alongside the denominator context without adding more permanent marks to the main dashboard.
+This is useful for validation as well as interpretation: the visible percentage can be checked alongside denominator context without adding more permanent marks to the main dashboard.
 
 ## Information and interpretation review
 
-The managed Information panel was reviewed as part of the dashboard evidence. It explains:
+The public Information view is included as supporting worksheet evidence and explains:
 
 - the final-six-month reporting scope;
 - the four care-setting categories;
@@ -145,7 +145,7 @@ The managed Information panel was reviewed as part of the dashboard evidence. It
 - the linked hospital/death-record basis of the indicator;
 - caveats around data completeness, reporting differences and local service configuration.
 
-The supplied screenshot of that panel contains the wording **“Management information only, not for onward distribution.”** For that reason, the screenshot itself should not be uploaded to the public repository. The analytical guidance is documented in these README files instead.
+The portfolio version has been prepared for public use and does not retain the earlier internal distribution line.
 
 ## Development and iteration
 
@@ -160,7 +160,7 @@ The delivered design incorporates:
 - explicit information text so users do not have to infer the indicator definition;
 - tooltips that expose useful denominator/context measures without cluttering the main view;
 - inclusion of the **2024/25p** reporting year alongside the earlier four financial years;
-- a public-portfolio boundary that keeps evidence at Scotland level and separates team-owned upstream analytics from Tableau work completed directly.
+- a public-portfolio boundary that keeps analytical evidence at Scotland level and separates team-owned upstream analytics from Tableau work completed directly.
 
 Where earlier project conversations and review cycles informed layout, terminology, controls and explanatory wording, the portfolio describes those changes at a proportionate level. It does not invent a detailed ticket-by-ticket change history where retained evidence does not support one.
 
@@ -168,17 +168,18 @@ Where earlier project conversations and review cycles informed layout, terminolo
 
 The final public-evidence check confirms:
 
-- no patient-level or granular values are published;
+- no patient-level or granular analytical values are published;
 - no supplied source CSV is published;
 - no upstream production R code is published;
 - no credentials, internal paths or infrastructure details are shown;
-- dashboard evidence is Scotland-level;
+- dashboard analytical evidence is Scotland-level;
+- parameter/calculated-field screenshots are used only to demonstrate Tableau configuration and logic;
 - source-versus-personal ownership is explicit;
-- the raw Information screenshot carrying an internal distribution warning is excluded from public publication.
+- the Information screenshot has been cleaned for public portfolio use before publication.
 
-## Definition of done for this case study
+## Definition of done
 
-MSG5 is ready for final portfolio review when the supplied **public-safe screenshot files** are placed in their referenced GitHub folders. At that point a reviewer can answer yes to the following:
+MSG5 is complete. A recruiter or technical reviewer can answer yes to the following:
 
 - Can I understand what the indicator measures?
 - Can I distinguish upstream team-owned methodology from the Tableau work completed here?
@@ -187,4 +188,4 @@ MSG5 is ready for final portfolio review when the supplied **public-safe screens
 - Can I trace displayed values back to the supplied source output?
 - Can I understand the worksheet/control/calculation structure?
 - Can I see the interpretation and governance safeguards?
-- Can I understand why the dashboard is useful without access to the managed Tableau environment?
+- Can I understand why the dashboard is useful without access to the managed production environment?
