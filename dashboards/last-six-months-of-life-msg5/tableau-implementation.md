@@ -27,7 +27,7 @@ The main reporting control is **Bed Days**, configured as an integer parameter w
 | `1` | Numbers |
 | `2` | Percentages |
 
-The screenshot confirms **Numbers** as the current value and the workbook-opening behaviour as **Current value**.
+The evidence confirms **Numbers** as the current value and the workbook-opening behaviour as **Current value**.
 
 ![Bed Days parameter](parameters/01-bed-days.png)
 
@@ -37,7 +37,7 @@ This means a simple user-facing dropdown drives the internal worksheet-selection
 
 The **Council Area** parameter is a string list. The supplied configuration shows **Scotland** as the current value and includes the available Council Area reporting geographies.
 
-![Council Area parameter](parameters/01-council-area.png)
+![Council Area parameter](parameters/02-council-area.png)
 
 Two calculated fields support this control:
 
@@ -129,7 +129,7 @@ The evidence shows two layers:
 
 This allows the same dashboard structure to be reused for the national Scotland view and the governed local reporting views in the managed workbook.
 
-The public portfolio remains restricted to Scotland-level output.
+The public portfolio remains restricted to Scotland-level analytical output.
 
 ## Tooltip design
 
@@ -167,7 +167,11 @@ The dashboard uses the reporting-suite navigation/help convention:
 - `Discovery Help`
 - `Discovery Info`
 
-Evidence was supplied for these components. The Home, Go To and Help worksheets are suitable as technical implementation evidence. The Information worksheet screenshot itself contains an explicit internal distribution warning, so that raw screenshot should not be published in the public repository; its analytical content is documented textually instead.
+The Information view is now included as public portfolio evidence after removing the earlier internal distribution line.
+
+![MSG5 Information view](worksheets/06-info-icon.png)
+
+The supporting worksheet evidence also includes the Home, Help and Go To components in the [Worksheets](worksheets/README.md) section.
 
 ## Calculated fields
 
@@ -182,7 +186,7 @@ The main chart/table measures are source fields rather than extra Tableau calcul
 
 ## Information panel
 
-The managed Information panel explains:
+The Information panel explains:
 
 - that the dashboard presents the last six months of life across Community, Community Hospital, Large Hospital and Hospice / Palliative Care;
 - that Bed Days can be shown as total numbers or percentages;
