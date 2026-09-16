@@ -4,7 +4,7 @@ This case study documents the Tableau implementation of the **Last 6 Months of L
 
 The dashboard is based on **MSG Indicator 5 — End of Life** analytical output supplied by another Public Health Scotland team. I did **not** develop or run the upstream MSG production code. My role was to work with the supplied aggregated indicator output and develop the Tableau reporting layer used to present, filter, explain and validate the result.
 
-> **Evidence status: technical case study complete in structure and wording.** The supplied Tableau screenshots now confirm the worksheet architecture, two parameters, four relevant calculated/helper fields, Scotland-level Numbers and Percentages states, navigation components and source-to-display logic. The only remaining repository action is to place the supplied public-safe screenshot files into the evidence folders listed below.
+> **Portfolio status: complete.** The public evidence now includes the Scotland-level Numbers and Percentages dashboard states, the four analytical worksheets, the two dashboard parameters, four relevant calculated/helper fields, the Information view and the shared navigation components. The written case study, methodology, Tableau implementation and validation evidence have been checked against those screenshots.
 
 ## Case study at a glance
 
@@ -13,8 +13,8 @@ The dashboard is based on **MSG Indicator 5 — End of Life** analytical output 
 | **What problem was being solved?** | A multi-setting end-of-life indicator needed to be presented in an accessible interactive format so users could compare how the final six months of life were distributed across Community, Community Hospital, Large Hospital and Hospice / Specialist Palliative Care Unit settings over time. |
 | **What was my role?** | I used the supplied MSG5 aggregate output as the Tableau data source and developed the reporting layer: dashboard composition, the Numbers / Percentages selector, Council Area selection logic, chart and table worksheets, navigation/help components, interpretation guidance and reporting-layer QA. |
 | **What technical capability does it show?** | Parameter-driven Tableau design, coordinated worksheet switching, calculated-field/filter logic, Measure Names / Measure Values composition, geography selection, tooltips, dashboard navigation, information design and source-to-dashboard validation. |
-| **How were the numbers trusted?** | Tableau Numbers and Percentages views are reconciled to the supplied aggregate output. The workbook uses the supplied bed-day and percentage fields directly, while the methodology provides reasonableness checks such as `Possible bed days = 182.5 × deaths`. |
-| **How did stakeholders influence the product?** | The dashboard was developed within the wider reporting-suite review cycle, with presentation, controls, terminology and interpretation guidance refined iteratively. The evidence is intentionally limited to changes that can be supported by the retained workbook and project context rather than inventing a large change history. |
+| **How were the numbers trusted?** | Tableau Numbers and Percentages views were reconciled to the supplied aggregate output. The workbook uses the supplied bed-day and percentage fields directly, while the methodology provides reasonableness checks such as `Possible bed days = 182.5 × deaths`. |
+| **How did stakeholders influence the product?** | The dashboard was developed within the wider reporting-suite review cycle, with presentation, controls, terminology and interpretation guidance refined iteratively. The case study only describes changes supported by retained workbook/project evidence. |
 | **Why does the solution matter?** | It converts a detailed indicator output into one reusable view where users can switch between absolute bed-day volumes and proportional distributions, compare financial years and change reporting geography without maintaining separate dashboard pages. |
 
 ## Reporting purpose
@@ -32,7 +32,7 @@ The dashboard combines a stacked bar chart with a detailed table so the same res
 
 ## Scotland-level dashboard states
 
-The public portfolio uses Scotland-level evidence only.
+The public portfolio uses Scotland-level analytical evidence only.
 
 ### Bed Days — Numbers
 
@@ -40,7 +40,7 @@ The Numbers state presents the four setting-level bed-day totals for each financ
 
 ![MSG5 — Scotland-level Numbers view](dashboard-screenshots/01-L6MOL-Scotland-Level-Dashboard-Overview-Numbers.png)
 
-For **2024/25p**, the supplied Scotland view displays approximately:
+For **2024/25p**, the Scotland view displays approximately:
 
 - Community: **9,467,029** bed days
 - Community Hospital: **166,842** bed days
@@ -53,14 +53,14 @@ The Percentages state presents the same four categories as a proportional distri
 
 ![MSG5 — Scotland-level Percentages view](dashboard-screenshots/02-L6MOL-Scotland-Level-Dashboard-Overview-Percentages.png)
 
-For **2024/25p**, the supplied Scotland view displays approximately:
+For **2024/25p**, the Scotland view displays approximately:
 
 - Community: **89.1%**
 - Community Hospital: **1.6%**
 - Large Hospital: **8.9%**
 - Hospice / Specialist Palliative Care Unit: **0.4%**
 
-The case study uses these values to evidence the reporting logic and validation process; it does not make causal claims about why care patterns differ between years or areas.
+These values evidence the reporting and validation logic; the case study does not make causal claims about why care patterns differ between years or areas.
 
 ## My contribution and ownership boundary
 
@@ -144,9 +144,9 @@ The parameter is surfaced to the user as a simple dropdown while `BedDaysView_Fi
 
 ### Council Area parameter
 
-The **Council Area** parameter is a string list containing **Scotland** and the available Council Area reporting values. The supplied screenshot confirms **Scotland** as the current/default value.
+The **Council Area** parameter is a string list containing **Scotland** and the available Council Area reporting values. The supplied evidence confirms **Scotland** as the current/default value.
 
-![Council Area parameter](parameters/01-council-area.png)
+![Council Area parameter](parameters/02-council-area.png)
 
 The parameter is supported by two calculated fields that manage selection behaviour and the Scotland national state. See [Calculated Fields](calculated-fields/README.md).
 
@@ -199,7 +199,11 @@ which rounds to **10,665,483** for display.
 
 ## Information design
 
-The managed dashboard includes an Information panel explaining:
+The Information view is part of the published technical evidence and explains the purpose and interpretation of the dashboard.
+
+![MSG5 — Information view](worksheets/06-info-icon.png)
+
+It covers:
 
 - what the dashboard presents;
 - the four care settings;
@@ -211,7 +215,7 @@ The managed dashboard includes an Information panel explaining:
 - the broad linked hospital/death-record basis of the indicator;
 - caveats around data completeness, reporting differences and service configuration.
 
-The raw Information-panel screenshot supplied for portfolio review contains an explicit internal management-information distribution warning, so it should **not** be committed to this public repository as-is. The public portfolio therefore documents its analytical content textually rather than redistributing that restricted screenshot.
+The public screenshot has been prepared specifically for portfolio use and does not include the earlier internal distribution line.
 
 ## Validation approach
 
@@ -241,8 +245,8 @@ Validation covers:
 - Bed Days selector behaviour;
 - alignment between the chart and table for the active analytical state;
 - tooltip reasonableness checks using Deaths and Possible Bed days;
-- navigation and information/help behaviour;
-- public-governance review before screenshot publication.
+- navigation and Information/Help behaviour;
+- public-governance review before publication.
 
 See [Validation and Development](validation-and-development.md).
 
@@ -266,14 +270,15 @@ The repository does not publish:
 - the production R scripts supplied by another team;
 - linked record-level data;
 - credentials, internal paths or infrastructure details;
-- granular dashboard states outside the approved Scotland-level portfolio boundary;
-- screenshots carrying explicit internal distribution restrictions.
+- granular analytical dashboard states outside the approved Scotland-level portfolio boundary.
+
+Parameter and calculated-field screenshots are included only to demonstrate Tableau configuration and logic; the public analytical results remain Scotland-level.
 
 The public case study focuses on **Tableau implementation, analytical interpretation, validation, information design and appropriate attribution of upstream methodology**.
 
-## Definition of done
+## Portfolio completion
 
-The case study is ready for final portfolio review once the supplied public-safe image files are committed to the folders referenced above. At that point, a reviewer can understand:
+This MSG5 case study is now complete. A recruiter or technical reviewer can understand:
 
 - what the indicator measures;
 - what work was upstream team-owned versus Tableau work completed here;
@@ -282,4 +287,4 @@ The case study is ready for final portfolio review once the supplied public-safe
 - how displayed values trace to the supplied source output;
 - the worksheet/control/calculation architecture;
 - the interpretation and governance safeguards;
-- why the dashboard is useful without access to the managed Tableau environment.
+- why the dashboard is useful without access to the managed production environment.
