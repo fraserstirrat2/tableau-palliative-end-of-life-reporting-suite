@@ -48,20 +48,22 @@ The percentage table mirrors the same architecture with the four supplied percen
 
 The dashboard also uses the shared reporting-suite components:
 
-- `Discovery home`
-- `Discovery Go To`
-- `Discovery Help`
-- `Discovery Info`
-
-The supplied technical evidence includes:
-
-| File | Evidence |
+| Evidence file | Role |
 | --- | --- |
 | `05-home-icon.png` | Home navigation worksheet and tooltip behaviour |
+| `06-info-icon.png` | Information view explaining purpose, settings, controls, interpretation and caveats |
 | `07-help-icon.png` | Help worksheet / help icon implementation |
 | `08-go-to-icon.png` | Go To worksheet / navigation-link implementation |
 
-The raw `Discovery Info` screenshot is **not** intended for public upload because the panel itself contains an explicit internal distribution warning. Its interpretation content is instead documented in the main case study and Tableau implementation README.
+### Information view
+
+The Information evidence has been prepared for public portfolio use and provides an important part of the dashboard story: the end user is given definitions and interpretation guidance inside the reporting product rather than being expected to infer the indicator from the chart alone.
+
+![MSG5 Information view](06-info-icon.png)
+
+The view explains the four settings, Numbers / Percentages control, financial-year and Council Area context, how to read the chart/table, tooltip use and key interpretation caveats.
+
+The Home, Help and Go To screenshots are retained as supporting implementation evidence because they show how the dashboard participates in the consistent wider reporting-suite navigation pattern.
 
 ## Why this worksheet structure works
 
@@ -81,4 +83,4 @@ This keeps formatting and measure selection straightforward while giving users o
 
 ## Evidence rule
 
-The purpose of these screenshots is to prove the implementation, not to publish the full managed workbook. Public evidence remains Scotland-level and excludes source data, workbooks/extracts, internal paths, credentials and restricted dashboard content.
+The purpose of these screenshots is to prove the implementation, not to publish the full managed workbook. Public analytical evidence remains Scotland-level and excludes source data, workbooks/extracts, internal paths, credentials and restricted operational material.
