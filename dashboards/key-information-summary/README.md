@@ -4,7 +4,7 @@ This case study documents the **Key Information Summary (KIS)** dashboard within
 
 The KIS work is particularly useful as a BI case study because the final dashboard is not simply a visual redesign. It developed from **two separate reporting products — KIS Accesses and KIS Patients — into one combined Tableau experience**, supported by a shared analytical dataset, parameter-driven view switching, stronger join/duplicate QA and repeated reconciliation back to the original reporting views.
 
-> **Portfolio status:** written technical case study complete. The current Tableau evidence has been reviewed and the documentation below reflects the final implementation and retained development history. The detailed PNG evidence is being added manually to the repository; until that upload is complete, some image links in the evidence folders may not yet resolve.
+> **Portfolio status: final visual QA.** The Tableau evidence has now been uploaded and the written case study reflects the final implementation, data-pipeline history and retained development evidence. A final recruiter-style consistency pass is being completed before the dashboard is marked fully complete in the suite homepage.
 
 **Latest reporting year shown in the supplied Tableau evidence:** 2024/25.
 
@@ -32,19 +32,18 @@ The Accesses state reports monthly activity for:
 - **Portal accesses**
 - **Scottish Ambulance Service (SAS) accesses**
 - **Other accesses**
-- **Total KIS accesses**
+- **KIS accesses**
 
 A user-facing **KIS Access Measure** control determines which access type is shown in the main line trend, while the monthly table retains the wider access breakdown for context.
 
 ### KIS Patients
 
-The Patients state presents:
+The final Patients state compares:
 
 - **Total KIS Patients**
 - **Active KIS Patients**
-- **monthly change / difference in patient numbers** as part of the supporting reporting logic
 
-The main Patients worksheet uses the same monthly time structure and shared reporting filters as the Accesses state.
+The workbook also retains a Patient Monthly Difference helper field from the combined source, but the supplied final dashboard evidence shows the delivered Patients view as the two-measure trend above rather than a separate monthly-difference chart.
 
 ## Reporting scope and filters
 
@@ -94,7 +93,7 @@ Early development focused on making those views usable and consistent, including
 - correcting **KIS** capitalisation;
 - improving legend, chart-border and table presentation;
 - configuring Cluster and Practice controls to show relevant values;
-- introducing Scotland-level reporting states without relying on an `All` category that could lead to double counting.
+- introducing Scotland-level reporting states without relying on an `All` source category that could lead to double counting.
 
 ### 2. Data-quality issues identified in the separate views
 
@@ -211,7 +210,7 @@ See [Parameters](parameters/README.md) and [Calculated Fields](calculated-fields
 The supplied evidence confirms **three analytical worksheets**:
 
 1. **KIS - Access Trend** — monthly line trend for the selected access type.
-2. **KIS - Access Table** — monthly detail table covering access channels, total KIS activity and monthly-difference context.
+2. **KIS - Access Table** — monthly detail table covering access channels, KIS activity and monthly-difference context.
 3. **KIS Patients Trend** — monthly trend comparing Active KIS Patients and Total KIS Patients.
 
 The dashboard also uses **four shared interface worksheets**:
@@ -233,13 +232,15 @@ Five calculation screenshots were supplied for the final KIS evidence set:
 - `Patient Monthly Difference`
 - `Selected KIS Accesses`
 
-The calculations are deliberately lightweight. The complexity in this dashboard comes primarily from **combining two related reporting products and coordinating their state, filters and validated source data**, rather than from reproducing source calculations inside Tableau.
+The calculations are deliberately lightweight. `Patient Monthly Difference` is retained from the combined source but is not treated as a separate delivered chart in the final Patients dashboard state shown in the public evidence.
+
+The complexity in this dashboard comes primarily from **combining two related reporting products and coordinating their state, filters and validated source data**, rather than from reproducing source calculations inside Tableau.
 
 See [Calculated Fields](calculated-fields/README.md).
 
 ## Information design
 
-The Information view explains:
+The Information view is intended to explain:
 
 - the difference between **KIS Accesses** and **KIS Patients**;
 - what each access channel represents;
@@ -295,7 +296,7 @@ From an employer perspective, the work demonstrates that BI delivery is not limi
 
 The KIS evidence package contains:
 
-- **5 approved Scotland-level dashboard states**;
+- **5 Scotland-level dashboard screenshots** currently stored in the evidence folder, including the earlier overview and the newer final-state captures;
 - **7 Tableau worksheet screenshots** — 3 analytical + 4 interface/navigation components;
 - **3 parameter screenshots**, with 2 identified as core delivered controls and 1 retained/legacy configuration;
 - **5 calculated-field screenshots**;
