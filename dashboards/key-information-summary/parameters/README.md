@@ -12,6 +12,8 @@ The supplied workbook contains three KIS-related parameter configurations. Two a
 
 ## KIS Access Measure
 
+![KIS Access Measure parameter](01-KIS-Access-Measure.png)
+
 This is the active selector used by the Access trend.
 
 | Stored value | Display as |
@@ -40,6 +42,8 @@ This allows one worksheet to support five analytical measures.
 
 ## KIS View
 
+![KIS View parameter](03-KIS-View.png)
+
 This is the main combined-dashboard selector.
 
 | Stored value | Display as |
@@ -64,6 +68,8 @@ Accesses or Patients analytical state
 This is the control that made it possible to replace the earlier separate KIS dashboard pages with one combined reporting interface.
 
 ## `KIS accesses` retained parameter
+
+![Retained KIS accesses parameter](02-KIS-accesses.png)
 
 The workbook also contains a string parameter named **KIS accesses** with five display values corresponding to the same access channels.
 
