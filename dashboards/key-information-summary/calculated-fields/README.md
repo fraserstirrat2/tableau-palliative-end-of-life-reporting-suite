@@ -14,6 +14,8 @@ The supplied KIS evidence contains five relevant Tableau calculated/helper field
 
 ## `Month`
 
+![Month calculated field](01-Month.png)
+
 **Purpose:** create a genuine Tableau date from the source `Time Period` text field.
 
 The calculation extracts the year from the reporting-period text, maps the month abbreviation to a month number and constructs a date.
@@ -35,11 +37,17 @@ This avoids alphabetical month ordering and makes the time-series worksheets beh
 
 ## `Access Monthly Difference`
 
+![Access Monthly Difference calculated field](02-Access-Monthly-Difference.png)
+
 **Purpose:** expose the Access-side monthly-change field under a readable Tableau name after the Accesses and Patients datasets were combined.
 
 The combined source creates suffixed fields where the two inputs contain similarly named columns. The wrapper keeps the workbook/reporting layer understandable without requiring worksheet authors to work directly with implementation suffixes.
 
+The final dashboard table uses deliberately compact aliases where needed for layout; this README preserves the underlying technical field names so the implementation remains clear.
+
 ## `KIS View Filter`
+
+![KIS View Filter calculated field](03-KIS-View-Filter.png)
 
 The supplied calculation is a direct reference to the `KIS View` parameter.
 
@@ -55,13 +63,17 @@ The field separates the user-facing parameter from worksheet filter configuratio
 
 ## `Patient Monthly Difference`
 
+![Patient Monthly Difference calculated field](04-Patient-Monthly-Difference.png)
+
 **Purpose:** expose the Patient-side monthly-change field under a readable name in the reporting layer.
 
 Like the Access wrapper, it protects the Tableau design from relying directly on the less-readable suffixed source-field naming created during the data combination.
 
-The public case study documents the analytical role of the wrapper rather than relying on suffix labels as business terminology.
+The public case study documents the analytical role of the wrapper rather than relying on suffix labels as business terminology. It remains part of the combined workbook structure even though the public final Patients dashboard state is evidenced primarily through the Active KIS Patients and Total KIS Patients trend.
 
 ## `Selected KIS Accesses`
+
+![Selected KIS Accesses calculated field](05-Selected-KIS-Accesses.png)
 
 This is the key measure-selection calculation for the Access trend.
 
