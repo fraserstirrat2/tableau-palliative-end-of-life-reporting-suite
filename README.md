@@ -1,6 +1,6 @@
 # Palliative & End-of-Life Care Tableau Reporting Suite
 
-> **Portfolio status:** two complete technical case studies — **Admissions Dashboard** and **Last 6 Months of Life by Setting (MSG5)** — with **Key Information Summary (KIS)** now in final recruiter-style QA and the remaining Service Utilisation / Location of Death frameworks ready for evidence.
+> **Portfolio status:** three complete technical case studies — **Admissions Dashboard**, **Last 6 Months of Life by Setting (MSG5)** and **Key Information Summary (KIS)** — with the remaining Service Utilisation and Location of Death frameworks ready for evidence.
 
 ![Admissions Dashboard — Scotland-level example](dashboards/admissions/dashboard-screenshots/09-12-months-admissions-per-death.png)
 
@@ -32,13 +32,13 @@ The underlying analytical work is team-maintained, so the portfolio deliberately
 
 ## Reporting-suite dashboard areas
 
-The Tableau workbook contains five main analytical areas. **Admissions** and **MSG5** are complete technical case studies. **KIS** has its full written evidence package and screenshots in place and is undergoing the final recruiter-style visual consistency check before being marked complete.
+The Tableau workbook contains five main analytical areas. **Admissions, MSG5 and KIS are now complete technical case studies.** The remaining dashboards use the same evidence structure but will be documented around their actual implementation rather than being forced into identical technical complexity.
 
 | Dashboard area | Portfolio status | Current public evidence |
 | --- | --- | --- |
 | **Admissions Dashboard** | ✅ Full technical case study complete | Five pre-death time windows, two trend measures, parameter-driven reporting, Scotland comparator logic, QA and stakeholder-led development |
 | **Last 6 Months of Life by Setting (MSG5)** | ✅ Full technical case study complete | Scotland Numbers/Percentages states, two parameters, four analytical worksheets, four relevant calculated/helper fields, Information/navigation evidence, methodology and QA |
-| **Key Information Summary** | 🟡 Final recruiter QA | Combined Accesses/Patients dashboard, full-join R/data QA history, KIS View and Access Measure controls, three analytical worksheets, five calculated/helper fields and Scotland-level evidence |
+| **Key Information Summary** | ✅ Full technical case study complete | Combined Accesses/Patients dashboard, full-join R/data QA history, KIS View and Access Measure controls, three analytical worksheets, five calculated/helper fields and Scotland-level evidence |
 | **Service Utilisation** | 🧱 Case-study framework created | Scotland-level overview plus matching README/methodology/implementation/validation/evidence folders ready for Tableau evidence |
 | **Location of Death** | 🧱 Case-study framework created | Scotland-level overview plus matching README/methodology/implementation/validation/evidence folders ready for Tableau evidence |
 
@@ -61,8 +61,6 @@ MSG5 translates a governed end-of-life indicator into a compact Tableau interfac
 KIS combines what began as separate Accesses and Patients products into one parameter-driven Tableau dashboard. The technical case study also documents the combined-source full join, duplicate-key QA, source-total reconciliation and the correction that removed duplicate lookup inflation before the final Tableau source was signed off.
 
 ![Key Information Summary — current Scotland-level Accesses overview](dashboards/key-information-summary/dashboard-screenshots/02-KIS-Accesses-Scotland-Level-Dashboard-Overview.png)
-
-[Open the KIS technical case study](dashboards/key-information-summary/README.md)
 
 ### Service Utilisation
 
@@ -127,6 +125,35 @@ The completed case study demonstrates:
 - [Calculated fields](dashboards/last-six-months-of-life-msg5/calculated-fields/README.md)
 - [Worksheets](dashboards/last-six-months-of-life-msg5/worksheets/README.md)
 
+## Completed case study — Key Information Summary (KIS)
+
+KIS demonstrates a third BI problem: **consolidating two existing reporting products and strengthening the supporting data workflow at the same time**.
+
+The completed case study demonstrates:
+
+- consolidation of separate **KIS Accesses** and **KIS Patients** reporting views into one dashboard;
+- a **KIS View** parameter switching between the two analytical states;
+- a **KIS Access Measure** selector reusing one trend worksheet across NHS24, OOH, Portal, SAS and Other access activity;
+- shared Financial Year, Health Board, HSCP, Cluster and Practice filtering;
+- a combined R-prepared source that retains matched, patient-only and access-only records through a full join;
+- duplicate-key checks and post-join source-total reconciliation;
+- investigation and correction of duplicate geography lookup inflation, reducing the combined output from **95,714 to 95,644 rows** while preserving valid source-only records;
+- cross-checking against the previously validated separate Accesses and Patients dashboards;
+- clear ownership boundaries between the original team-authored R workflow and my contribution to reading, debugging, finalising and validating the combined process;
+- embedded Home, Go To, Help and Information components;
+- four current Scotland-level dashboard states plus worksheet, parameter and calculated-field evidence.
+
+### Explore the KIS evidence
+
+- [KIS — Technical Case Study](dashboards/key-information-summary/README.md)
+- [Dashboard screenshots](dashboards/key-information-summary/dashboard-screenshots/README.md)
+- [Data pipeline and methodology](dashboards/key-information-summary/data-pipeline-and-methodology.md)
+- [Tableau implementation](dashboards/key-information-summary/tableau-implementation.md)
+- [Validation and development](dashboards/key-information-summary/validation-and-development.md)
+- [Parameters](dashboards/key-information-summary/parameters/README.md)
+- [Calculated fields](dashboards/key-information-summary/calculated-fields/README.md)
+- [Worksheets](dashboards/key-information-summary/worksheets/README.md)
+
 ## Technical and professional capability demonstrated
 
 This portfolio is intended to evidence more than chart creation. Across the reporting suite it demonstrates:
@@ -179,7 +206,7 @@ The repository should therefore be read as **evidence of professional BI deliver
 - [x] Add a representative Scotland-level screenshot for each remaining dashboard area.
 - [x] Create the common case-study framework for MSG5, Key Information Summary, Service Utilisation and Location of Death.
 - [x] Complete the MSG5 technical case study, evidence upload and final consistency/governance review.
-- [ ] Complete final recruiter QA and sign off the Key Information Summary case study.
+- [x] Complete the Key Information Summary technical case study, evidence upload and final recruiter/governance review.
 - [ ] Complete the Service Utilisation case study from its live Tableau evidence.
 - [ ] Complete the Location of Death case study from its live Tableau evidence.
 - [ ] Complete a final suite-wide consistency, accuracy and governance review.
