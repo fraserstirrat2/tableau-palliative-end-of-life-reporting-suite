@@ -1,6 +1,6 @@
 # Palliative & End-of-Life Care Tableau Reporting Suite
 
-> **Portfolio status:** two complete technical case studies — **Admissions Dashboard** and **Last 6 Months of Life by Setting (MSG5)** — with matching evidence frameworks already in place for Key Information Summary, Service Utilisation and Location of Death.
+> **Portfolio status:** two complete technical case studies — **Admissions Dashboard** and **Last 6 Months of Life by Setting (MSG5)** — with **Key Information Summary (KIS)** now in final recruiter-style QA and the remaining Service Utilisation / Location of Death frameworks ready for evidence.
 
 ![Admissions Dashboard — Scotland-level example](dashboards/admissions/dashboard-screenshots/09-12-months-admissions-per-death.png)
 
@@ -32,13 +32,13 @@ The underlying analytical work is team-maintained, so the portfolio deliberately
 
 ## Reporting-suite dashboard areas
 
-The Tableau workbook contains five main analytical areas. **Admissions** and **MSG5** are now complete technical case studies. The remaining dashboards use the same core evidence structure but will be documented around their actual implementation rather than being forced into identical technical complexity.
+The Tableau workbook contains five main analytical areas. **Admissions** and **MSG5** are complete technical case studies. **KIS** has its full written evidence package and screenshots in place and is undergoing the final recruiter-style visual consistency check before being marked complete.
 
 | Dashboard area | Portfolio status | Current public evidence |
 | --- | --- | --- |
 | **Admissions Dashboard** | ✅ Full technical case study complete | Five pre-death time windows, two trend measures, parameter-driven reporting, Scotland comparator logic, QA and stakeholder-led development |
 | **Last 6 Months of Life by Setting (MSG5)** | ✅ Full technical case study complete | Scotland Numbers/Percentages states, two parameters, four analytical worksheets, four relevant calculated/helper fields, Information/navigation evidence, methodology and QA |
-| **Key Information Summary** | 🧱 Case-study framework created | Scotland-level overview plus matching README/methodology/implementation/validation/evidence folders ready for Tableau evidence |
+| **Key Information Summary** | 🟡 Final recruiter QA | Combined Accesses/Patients dashboard, full-join R/data QA history, KIS View and Access Measure controls, three analytical worksheets, five calculated/helper fields and Scotland-level evidence |
 | **Service Utilisation** | 🧱 Case-study framework created | Scotland-level overview plus matching README/methodology/implementation/validation/evidence folders ready for Tableau evidence |
 | **Location of Death** | 🧱 Case-study framework created | Scotland-level overview plus matching README/methodology/implementation/validation/evidence folders ready for Tableau evidence |
 
@@ -58,9 +58,11 @@ MSG5 translates a governed end-of-life indicator into a compact Tableau interfac
 
 ### Key Information Summary
 
-This dashboard provides a high-level Scotland summary of key palliative and end-of-life care measures. Its case-study framework is in place and will be populated from the live Tableau implementation, source/methodology evidence and public-safe screenshots.
+KIS combines what began as separate Accesses and Patients products into one parameter-driven Tableau dashboard. The technical case study also documents the combined-source full join, duplicate-key QA, source-total reconciliation and the correction that removed duplicate lookup inflation before the final Tableau source was signed off.
 
-![Key Information Summary — Scotland-level overview](dashboards/01-KIS-Scotland-Level-Dashboard-Overview.png)
+![Key Information Summary — current Scotland-level Accesses overview](dashboards/key-information-summary/dashboard-screenshots/02-KIS-Accesses-Scotland-Level-Dashboard-Overview.png)
+
+[Open the KIS technical case study](dashboards/key-information-summary/README.md)
 
 ### Service Utilisation
 
@@ -132,7 +134,7 @@ This portfolio is intended to evidence more than chart creation. Across the repo
 - **Tableau:** dashboard composition, calculations, parameters, filters, interaction design and user guidance;
 - **Business intelligence:** translating reporting questions into structured, maintainable analytical products;
 - **R and SQL:** experience within the wider preparation, analytical and validation workflow;
-- **data quality:** reconciliation, QA, refresh checking and interpretation controls;
+- **data integration and QA:** join-grain reasoning, duplicate-key checks, reconciliation, refresh checking and interpretation controls;
 - **stakeholder engagement:** iterative development informed by regular review and feedback;
 - **data visualisation:** clarity, consistency, hierarchy, usability and accessible explanation of complex measures;
 - **governance:** working safely with sensitive public-health information and publishing only approved aggregate evidence;
@@ -177,7 +179,7 @@ The repository should therefore be read as **evidence of professional BI deliver
 - [x] Add a representative Scotland-level screenshot for each remaining dashboard area.
 - [x] Create the common case-study framework for MSG5, Key Information Summary, Service Utilisation and Location of Death.
 - [x] Complete the MSG5 technical case study, evidence upload and final consistency/governance review.
-- [ ] Complete the Key Information Summary case study from its live Tableau evidence.
+- [ ] Complete final recruiter QA and sign off the Key Information Summary case study.
 - [ ] Complete the Service Utilisation case study from its live Tableau evidence.
 - [ ] Complete the Location of Death case study from its live Tableau evidence.
 - [ ] Complete a final suite-wide consistency, accuracy and governance review.
