@@ -107,15 +107,7 @@ Marks: Measure Values
 Filters: KIS View Filter, Measure Names, Year, Health Board, HSCP, Cluster, Practice
 ```
 
-The table includes:
-
-- NHS24 Accesses
-- OOH Accesses
-- Portal Accesses
-- SAS Accesses
-- Other Accesses
-- Total KIS Accesses
-- monthly-difference context
+The table contains the main access-channel measures, KIS activity and monthly-difference context. Some user-facing table headings use deliberately shorter **aliases** so the final table remains readable at dashboard size; the underlying technical fields are documented in the worksheet and calculated-field evidence.
 
 This creates a useful two-level interaction: the line chart answers "how is the selected channel changing?" while the table keeps the rest of the monthly KIS activity visible for context.
 
@@ -191,28 +183,29 @@ The KIS dashboard uses four shared interface worksheets:
 - **HELP** — exposes help guidance.
 - **INFO** — provides KIS-specific definitions and interpretation guidance.
 
-The Information view explains the two KIS analytical states, available access channels, patient measures, filter structure and dashboard use.
-
-The definitions displayed include:
-
-- **NHS24** — telephone and digital health advice activity;
-- **Out of Hours (OOH)** — urgent primary-care services accessed outside normal GP opening hours;
-- **Scottish Ambulance Service (SAS)** — KIS accesses made by ambulance-service clinicians;
-- **Portal** — KIS accesses made through clinical systems used by healthcare professionals.
-
-This helps the dashboard work for users who understand the reporting question but may not know the source-system terminology.
+The Information view provides contextual guidance around the two KIS states, access channels, patient measures, filter structure and dashboard use. Its wording is part of the managed reporting product and can continue to evolve during team/publication review without changing the underlying technical architecture documented here.
 
 ## Dashboard states evidenced
 
-The supplied public-safe evidence set contains:
+The final public-safe evidence set contains four current Scotland-level states:
 
-- a current Scotland-level KIS Accesses overview;
-- a current Scotland-level KIS Patients overview;
-- a Scotland-level 2022/23 Portal Accesses state;
-- the equivalent KIS Patients state for the same financial-year/filter context;
-- the earlier representative Scotland-level overview already present in the repository, which should be replaced by the current screenshot during the manual evidence upload.
+### KIS Accesses — 2024/25
 
-The paired 2022/23 screenshots are particularly useful because they demonstrate that the **KIS View parameter changes the analytical content while retaining the broader dashboard context**.
+![KIS Accesses — Scotland 2024/25](dashboard-screenshots/02-KIS-Accesses-Scotland-Level-Dashboard-Overview.png)
+
+### KIS Patients — 2024/25
+
+![KIS Patients — Scotland 2024/25](dashboard-screenshots/03-KIS-Patients-Scotland-Level-Dashboard-Overview.png)
+
+### KIS Accesses — 2022/23 Portal
+
+![KIS Accesses — Scotland 2022/23 Portal](dashboard-screenshots/04-KIS-Accesses-Scotland-Level-Dashboard-2022-Portal.png)
+
+### KIS Patients — 2022/23
+
+![KIS Patients — Scotland 2022/23](dashboard-screenshots/05-KIS-Patients-Scotland-Level-Dashboard-2022-Portal.png)
+
+The paired 2022/23 screenshots are particularly useful because they demonstrate that the **KIS View parameter changes the analytical content while retaining the broader dashboard context**, while the Accesses screenshot also demonstrates a different selected access measure.
 
 ## Why the implementation is useful
 
